@@ -1,29 +1,33 @@
 <html>
 <head>
     <title>Attendance Tracker | Admin Dashboard</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
 </head>
 <body>
     <h2>Admin Dashboard</h2>
-    <form>
-        <label>Rooms</label><br \>
-        <select name="Rooms" size="" multiple>
-            <option value="room1">Room 1</option>
-        </select><br \>
-        <button type="button">Add Room</button>
-    </form>
-    <form>
-        <label>Speakers</label><br \>
-        <select name="Rooms" size="" multiple>
-            <option value="room1">Dr. Smith</option>
-        </select><br \>
-        <button type="button">Add Speaker</button>
-    </form>
-    <form>
-        <label>Timeslots</label><br \>
-        <select name="Rooms" size="" multiple>
-            <option value="time1">10a - 11a</option>
-        </select><br \>
-        <button type="button">Add Timeslot</button>
-    </form>
+    <div class="grid">
+        <div class="grid-element">
+            <label>Rooms</label><br \>
+            <select name="Rooms" size="" class="list" multiple>
+                <option value="room1">Room 1</option>
+            </select><br \><br \>
+            <button type="button" class="grid-button">Add Room</button><br \>
+        </div>
+        <div class="grid-element">
+            <label>Speakers</label><br \>
+            <select name="Rooms" size="" class="list" multiple>
+                <option value="room1">Dr. Smith</option>
+            </select><br \><br \>
+            <button type="button" class="grid-button">Add Speaker</button><br \>
+        </div>
+        <div class="grid-element">
+            <label>Timeslots</label><br \>
+            <select name="Rooms" size="" class="list" multiple>
+                <option value="time1">10a - 11a</option>
+            </select><br \><br \>
+            <button type="button" class="grid-button">Add Timeslot</button><br \>
+        </div>
+    </div>
 </body>
 </html>
