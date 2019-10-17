@@ -25,18 +25,20 @@ SECRET_KEY = 'lvy0j^rd@=m@8ha*yfo78xwoelk+5k*nso*fv_o3^#ue2u!n81'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # hosts for development
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'codecamp.apps.attendance',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

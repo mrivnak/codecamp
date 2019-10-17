@@ -25,6 +25,14 @@ class Room(models.Model):
     # todo: room needs more data?
 
 
+class Speaker(models.Model):
+    SpeakerID = models.AutoField(primary_key=True),
+    first_name = models.CharField(max_length=50),
+    last_name = models.CharField(max_length=50),
+    email = models.CharField(max_length=50),  # todo: verify valid email in backend before allowing addition. regex?
+    phone_num = models.IntegerField
+
+
 class Session(models.Model):
     SpeechID = models.AutoField(primary_key=True),
     Event = models.ForeignKey(Event, on_delete=models.CASCADE),
@@ -32,11 +40,3 @@ class Session(models.Model):
     start_datetime = models.DateField,
     end_datetime = models.DateField,
     Speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
-
-
-class Speaker(models.Model):
-    SpeakerID = models.AutoField(primary_key=True),
-    first_name = models.CharField(max_length=50),
-    last_name = models.CharField(max_length=50),
-    email = models.CharField(max_length=50),  # todo: verify valid email in backend before allowing addition. regex?
-    phone_num = models.IntegerField
