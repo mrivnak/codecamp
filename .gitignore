@@ -1,1 +1,4 @@
 # todo: configure gitignore
+/venv/
+/venv/pyvenv.cfg
+venv/pyvenv.cfg

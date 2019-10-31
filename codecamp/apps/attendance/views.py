@@ -1,10 +1,28 @@
-from django.shortcuts import render
-from rest_framework import viewsets
-from .serializers import VenueSerializer
-from .models import Venue, Event, Room, Speaker, Session
+from django.http import HttpResponse, HttpResponseNotFound
+from django.template import loader
+
+from .models import Room
 
 
-# Create your views here.
-class VenueViewSet(viewsets.ModelViewSet):
-    queryset = Venue.objects.all().order_by('room')
-    serializer_class = VenueSerializer
+def admin(request):
+    room_list = Room.objects.order_by()
+    template = loader.get_template('admin.html')
+    context = {
+        'room_list': room_list,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def form(request, type, action):
+    types = {'room', 'speaker','timeslot', 'session'}
+    actions = {'add', 'edit'}
+    if type in types and action in actions:
+        template = loader.get_template('form.html')
+        context = {
+            'type': type,
+            'action': action,
+            'form_header': action.capitalize() + ' ' + type.capitalize(),
+        }
+        return HttpResponse(template.render(context, request))
+    else:
+        return HttpResponseNotFound("Invalid form option(s)")
