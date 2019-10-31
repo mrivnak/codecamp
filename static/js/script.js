@@ -45,7 +45,7 @@
 
     var current_path = window.location.href.split('/').pop();
     if (current_path == '') {
-        current_path = 'index.html';
+        current_path = 'admin.html';
     }
 
     var $current_menu = $('a[href="' + current_path + '"]');

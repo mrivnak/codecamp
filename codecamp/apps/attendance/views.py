@@ -4,9 +4,9 @@ from django.template import loader
 from .models import Room
 
 
-def index(request):
+def admin(request):
     room_list = Room.objects.order_by()
-    template = loader.get_template('index.html')
+    template = loader.get_template('admin.html')
     context = {
         'room_list': room_list,
     }
