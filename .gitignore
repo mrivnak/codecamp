@@ -7,3 +7,13 @@ venv/pyvenv.cfg
 codecamp/.DS_Store
 codecamp/apps/.DS_Store
 *.pyc
+
+codecamp/apps/attendance/migrations/
+
+codecamp/db.sqlite3
+
+codecamp/__pycache__/
+
+codecamp/apps/__pycache__/
+
+codecamp/settings/__pycache__/
