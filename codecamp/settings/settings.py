@@ -25,18 +25,20 @@ SECRET_KEY = 'lvy0j^rd@=m@8ha*yfo78xwoelk+5k*nso*fv_o3^#ue2u!n81'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # hosts for development
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'codecamp.apps.attendance',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,11 @@ ROOT_URLCONF = 'codecamp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            '/Users/michaelrivnak/OneDrive - Wentworth Institute of Technology/GitHub/codecamp/templates/',
+            # TODO: FIX THIS
+            # os.path.join(os.path.dirname(__file__), 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,3 +124,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    '/Users/michaelrivnak/OneDrive - Wentworth Institute of Technology/GitHub/codecamp/static/',
+    # TODO: FIX THIS
+    # os.path.join(os.path.dirname(__file__), 'templates')
+]

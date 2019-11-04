@@ -1,1 +1,9 @@
 # todo: configure gitignore
+/venv/
+/venv/pyvenv.cfg
+venv/pyvenv.cfg
+.idea
+.DS_Store
+codecamp/.DS_Store
+codecamp/apps/.DS_Store
+*.pyc
