@@ -296,16 +296,16 @@
                                     <!-- Widget -->
                                     <div class="dt-widget dt-widget-separator dt-widget-hover">
 
-                                        {% if times_list %}
-                                            {% for times in times_list %}
+                                        {% if time_list %}
+                                            {% for time in time_list %}
                                                 <!-- Widget Item -->
                                                 <div class="dt-widget__item">
 
                                                     <!-- Widget Info -->
                                                     <div class="dt-widget__info text-truncate">
-                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ times.start_time }} - {{ times.end_time }} | {{ times.date }}</a>
+                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ time.start_time }} - {{ time.end_time }} | {{ time.date }}</a>
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
-                                                            {{ times.duration }} minutes
+                                                            {{ time.duration }} minutes
                                                         </p>
                                                     </div>
                                                     <!-- /widget info -->

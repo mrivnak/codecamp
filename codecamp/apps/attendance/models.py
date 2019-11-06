@@ -25,6 +25,12 @@ class Room(models.Model):
     # todo: room needs more data?
 
 
+class Timeslot(models.Model):
+    TimeslotID = models.AutoField(primary_key=True),
+    start_datetime = models.DateTimeField,
+    end_datetime = models.DateTimeField
+
+
 class Speaker(models.Model):
     SpeakerID = models.AutoField(primary_key=True),
     first_name = models.CharField(max_length=50),
@@ -37,6 +43,5 @@ class Session(models.Model):
     SpeechID = models.AutoField(primary_key=True),
     Event = models.ForeignKey(Event, on_delete=models.CASCADE),
     Room = models.ForeignKey(Room, on_delete=models.CASCADE),
-    start_datetime = models.DateField,
-    end_datetime = models.DateField,
+    timeslot = models.ForeignKey(Timeslot, on_delete=models.CASCADE),
     Speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
