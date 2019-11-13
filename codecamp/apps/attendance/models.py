@@ -21,6 +21,7 @@ class Event(models.Model):
 
 class Room(models.Model):
     RoomID = models.AutoField(primary_key=True),
+    name = models.CharField(max_length=50),
     Venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     # todo: room needs more data?
 

@@ -303,7 +303,7 @@
 
                                                     <!-- Widget Info -->
                                                     <div class="dt-widget__info text-truncate">
-                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ time.start_time }} - {{ time.end_time }} | {{ time.date }}</a>
+                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ time.start_time }} - {{ time.end_time }}</a>
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
                                                             {{ time.duration }} minutes
                                                         </p>
@@ -375,8 +375,9 @@
                                                     <div class="dt-widget__info text-truncate">
                                                         <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ session.title }}</a>
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
-                                                            <a class="text-dark" href="javascript:void(0)">{{ session.speaker_name }}</a>
-                                                            {{ session.date }} | {{ session.start_time }} - {{ session.end_time }}
+                                                            {{ session.timeslot.start_time }} - {{ session.timeslot.end_time }}<br>
+                                                            {{ session.room.name }}<br>
+                                                            <a class="text-dark" href="javascript:void(0)">{{ session.speaker.name }}</a>
                                                         </p>
                                                     </div>
                                                     <!-- /widget info -->
