@@ -11,6 +11,9 @@ class Venue(models.Model):
     Venue_Name = models.CharField(max_length=50),  # todo: different max length? find way for no maximum?
     Address = models.CharField(max_length=50),
 
+    def __str__(self):
+        return self.Venue_Name
+
 
 class Event(models.Model):
     EventID = models.AutoField(primary_key=True),
@@ -19,12 +22,18 @@ class Event(models.Model):
     start_datetime = models.DateField
     end_datetime = models.DateField
 
+    def __str__(self):
+        return self.event_name
+
 
 class Room(models.Model):
     RoomID = models.AutoField(primary_key=True),
     room_name = models.CharField(max_length=50, name='room_name')
     Venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     # todo: room needs more data?
+
+    def __str__(self):
+        return self.room_name
 
 
 class Speaker(models.Model):
@@ -33,6 +42,9 @@ class Speaker(models.Model):
     last_name = models.CharField(max_length=50),
     email = models.CharField(max_length=50),  # todo: verify valid email in backend before allowing addition. regex?
     phone_num = models.IntegerField
+
+    def __str__(self):
+        return self.first_name+self.last_name
 
 
 class Session(models.Model):
@@ -43,3 +55,6 @@ class Session(models.Model):
     start_datetime = models.DateField,
     end_datetime = models.DateField,
     Speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.session_name
