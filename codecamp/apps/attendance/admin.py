@@ -1,7 +1,10 @@
 from django.contrib import admin
-import codecamp.apps.attendance.models as models
+from .models import Speaker, Room, Venue, Event, Session
 
 # Register your models here.
 # todo: add core functionality if we want it in default django-admin portal
-for model in [models.Speaker, models.Room, models.Venue, models.Event, models.Session]:
-    admin.site.register(model)
+admin.site.register(Speaker)
+admin.site.register(Room)
+admin.site.register(Venue)
+admin.site.register(Event)
+admin.site.register(Session)

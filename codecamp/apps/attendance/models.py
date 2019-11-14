@@ -8,7 +8,7 @@ from django.db import models
 
 class Venue(models.Model):
     VenueID = models.AutoField(primary_key=True),
-    Venue_Name = models.CharField(max_length=50),  # todo: different max length? find way for no maximum?
+    venue_name = models.CharField(max_length=50),  # todo: different max length? find way for no maximum?
     Address = models.CharField(max_length=50),
 
     def __str__(self):
@@ -28,7 +28,7 @@ class Event(models.Model):
 
 class Room(models.Model):
     RoomID = models.AutoField(primary_key=True),
-    name = models.CharField(max_length=50),
+    room_name = models.CharField(max_length=50),
     Venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     # todo: room needs more data?
 
