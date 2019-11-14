@@ -14,6 +14,7 @@ class Venue(models.Model):
 
 class Event(models.Model):
     EventID = models.AutoField(primary_key=True),
+    event_name = models.CharField(max_length=50, name='event_name')
     Venue = models.ForeignKey(Venue, on_delete=models.CASCADE),
     start_datetime = models.DateField
     end_datetime = models.DateField
@@ -21,6 +22,7 @@ class Event(models.Model):
 
 class Room(models.Model):
     RoomID = models.AutoField(primary_key=True),
+    room_name = models.CharField(max_length=50, name='room_name')
     Venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     # todo: room needs more data?
 
@@ -35,6 +37,7 @@ class Speaker(models.Model):
 
 class Session(models.Model):
     SpeechID = models.AutoField(primary_key=True),
+    session_name = models.CharField(max_length=50, name='session_name')
     Event = models.ForeignKey(Event, on_delete=models.CASCADE),
     Room = models.ForeignKey(Room, on_delete=models.CASCADE),
     start_datetime = models.DateField,
