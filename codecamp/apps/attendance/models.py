@@ -28,12 +28,18 @@ class Event(models.Model):
 
 class Room(models.Model):
     RoomID = models.AutoField(primary_key=True),
-    room_name = models.CharField(max_length=50, name='room_name')
+    name = models.CharField(max_length=50),
     Venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     # todo: room needs more data?
 
     def __str__(self):
         return self.room_name
+
+
+class Timeslot(models.Model):
+    TimeslotID = models.AutoField(primary_key=True),
+    start_datetime = models.DateTimeField,
+    end_datetime = models.DateTimeField
 
 
 class Speaker(models.Model):
@@ -52,8 +58,7 @@ class Session(models.Model):
     session_name = models.CharField(max_length=50, name='session_name')
     Event = models.ForeignKey(Event, on_delete=models.CASCADE),
     Room = models.ForeignKey(Room, on_delete=models.CASCADE),
-    start_datetime = models.DateField,
-    end_datetime = models.DateField,
+    timeslot = models.ForeignKey(Timeslot, on_delete=models.CASCADE),
     Speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
 
     def __str__(self):

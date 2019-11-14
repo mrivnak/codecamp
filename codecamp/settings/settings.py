@@ -57,9 +57,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            '/Users/michaelrivnak/OneDrive - Wentworth Institute of Technology/GitHub/codecamp/templates/',
-            # TODO: FIX THIS
-            # os.path.join(os.path.dirname(__file__), 'templates')
+            os.path.join(os.path.dirname(__file__), os.path.pardir, os.path.pardir, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -126,7 +124,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    '/Users/michaelrivnak/OneDrive - Wentworth Institute of Technology/GitHub/codecamp/static/',
-    # TODO: FIX THIS
-    # os.path.join(os.path.dirname(__file__), 'templates')
+    os.path.join(os.path.dirname(__file__), os.path.pardir, os.path.pardir, 'static')
 ]

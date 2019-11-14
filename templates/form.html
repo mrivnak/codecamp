@@ -8,7 +8,7 @@
   <meta name="description" content="Drift - A fully responsive, HTML5 based admin template">
   <meta name="keywords" content="Responsive, HTML5, admin theme, business, professional, jQuery, web design, CSS3, sass">
   <!-- /meta tags -->
-  <title>{{ form_header }}</title>
+  <title>Codecamp Attendance</title>
 
   {% load static %}
   <!-- Site favicon -->
@@ -94,7 +94,7 @@
 
                         <!-- Menu Item -->
                         <li class="dt-side-nav__item">
-                            <a href="/" class="dt-side-nav__link" title="Dashboard">
+                            <a href="/admin/" class="dt-side-nav__link" title="Dashboard">
                                 <i class="icon icon-dashboard icon-fw icon-lg"></i>
                                 <span class="dt-side-nav__text">Dashboard</span>
                             </a>
@@ -160,7 +160,7 @@
                                                 <label class="col-xl-3 col-form-label text-sm-right" for="capacity">Capacity</label>
 
                                                 <div class="col-xl-9">
-                                                    <input type="password" class="form-control" id="capacity"
+                                                    <input type="number" class="form-control" id="capacity"
                                                            placeholder="Capacity">
                                                 </div>
                                             </div>
@@ -292,11 +292,44 @@
 
                                             <!-- Form Group -->
                                             <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="capacity">Capacity</label>
+                                                <label class="col-xl-3 col-form-label text-sm-right" for="start-date">Start Date</label>
 
                                                 <div class="col-xl-9">
-                                                    <input type="password" class="form-control" id="capacity"
-                                                           placeholder="Capacity">
+                                                    <input type="date" class="form-control" id="start-date">
+                                                </div>
+                                            </div>
+                                            <!-- /form group -->
+
+                                            <!-- Form Group -->
+                                            <div class="form-group form-row">
+                                                <label class="col-xl-3 col-form-label text-sm-right" for="start-time">Start Time</label>
+
+                                                <div class="col-xl-9">
+                                                    <input type="time" class="form-control" id="start-time">
+                                                </div>
+                                            </div>
+                                            <!-- /form group -->
+
+                                            <!-- Separator -->
+                                            <hr class="border-dashed my-8">
+                                            <!-- /separator -->
+
+                                            <!-- Form Group -->
+                                            <div class="form-group form-row">
+                                                <label class="col-xl-3 col-form-label text-sm-right" for="end-date">End Date</label>
+
+                                                <div class="col-xl-9">
+                                                    <input type="date" class="form-control" id="end-date">
+                                                </div>
+                                            </div>
+                                            <!-- /form group -->
+
+                                            <!-- Form Group -->
+                                            <div class="form-group form-row">
+                                                <label class="col-xl-3 col-form-label text-sm-right" for="end-time">End Time</label>
+
+                                                <div class="col-xl-9">
+                                                    <input type="time" class="form-control" id="end-time">
                                                 </div>
                                             </div>
                                             <!-- /form group -->
@@ -327,7 +360,7 @@
 
                                         <!-- Card Heading -->
                                         <div class="dt-card__heading">
-                                            <h3 class="dt-card__title">{% if action == add %}Add{% elif action == edit %}Edit{% endif %} Room</h3>
+                                            <h3 class="dt-card__title">{% if action == add %}Add{% elif action == edit %}Edit{% endif %} Session</h3>
                                         </div>
                                         <!-- /card heading -->
 
@@ -340,6 +373,17 @@
                                         <!-- Form -->
                                         <form>
 
+                                             <!-- Form Group -->
+                                            <div class="form-group form-row">
+                                                <label class="col-xl-3 col-form-label text-sm-right" for="session-title">Session
+                                                    Title</label>
+
+                                                <div class="col-xl-9">
+                                                    <input type="text" class="form-control" id="session-title">
+                                                </div>
+                                            </div>
+                                            <!-- /form group -->
+
                                             <!-- Form Group -->
                                             <div class="form-group form-row">
                                                 <label class="col-xl-3 col-form-label text-sm-right" for="room-select">Room
@@ -348,6 +392,29 @@
                                                 <div class="col-xl-9">
                                                     <select required class="form-control" id="room-select">
                                                         <option selected value="" disabled>Select room...</option>
+                                                        {% if room_list %}
+                                                            {% for room in room_list %}
+                                                                <option value="{{ room.RoomID }}">room.name</option>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- /form group -->
+                                        
+                                            <!-- Form Group -->
+                                            <div class="form-group form-row">
+                                                <label class="col-xl-3 col-form-label text-sm-right" for="speaker-select">Room
+                                                    Name</label>
+
+                                                <div class="col-xl-9">
+                                                    <select required class="form-control" id="speaker-select">
+                                                        <option selected value="" disabled>Select speaker...</option>
+                                                        {% if speaker_list %}
+                                                            {% for speaker in speaker_list %}
+                                                                <option value="{{ speaker.RoomID }}">speaker.name</option>
+                                                            {% endfor %}
+                                                        {% endif %}
                                                     </select>
                                                 </div>
                                             </div>
@@ -355,23 +422,17 @@
 
                                             <!-- Form Group -->
                                             <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="capacity">Room
-                                                    Name</label>
+                                                <label class="col-xl-3 col-form-label text-sm-right" for="time-select">Timeslot</label>
 
                                                 <div class="col-xl-9">
-                                                    <input type="text" class="form-control" id="room-name"
-                                                           placeholder="Enter room name">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="capacity">Capacity</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="password" class="form-control" id="capacity"
-                                                           placeholder="Capacity">
+                                                    <select required class="form-control" id="room-select">
+                                                        <option selected value="" disabled>Select timeslot...</option>
+                                                        {% if time_list %}
+                                                            {% for time in time_list %}
+                                                                <option value="{{ time.RoomID }}">room.name</option>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </select>
                                                 </div>
                                             </div>
                                             <!-- /form group -->
