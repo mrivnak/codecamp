@@ -1,106 +1,16 @@
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.template import loader
 
 from datetime import datetime
 
-from .models import Room, Speaker, Timeslot, Session
+from .models import Venue, Event, Room, Speaker, Timeslot, Session
+from .forms import VenueForm, EventForm, SpeakerForm
 
 
 def index(request):
     session_list = Session.objects.order_by()
     template = loader.get_template('index.html')
-    session_list = [
-        {
-            'title': 'Object Oriented Programming',
-            'id': 0,
-            'room': {
-                'name': 'Room 1',
-                'capacity': '500'
-            },
-            'speaker': {
-                'name': 'John Smith'
-            },
-            'timeslot': {
-                'start_time': datetime.now(),
-                'end_time': datetime.now()
-            }
-        },
-        {
-            'title': 'Artificial Intelligence with Python',
-            'id': 2,
-            'room': {
-                'name': 'Room 2',
-                'capacity': '300'
-            },
-            'speaker': {
-                'name': 'Jason Smith'
-            },
-            'timeslot': {
-                'start_time': datetime.now(),
-                'end_time': datetime.now()
-            }
-        },
-        {
-            'title': 'Object Oriented Programming',
-            'id': 0,
-            'room': {
-                'name': 'Room 1',
-                'capacity': '500'
-            },
-            'speaker': {
-                'name': 'John Smith'
-            },
-            'timeslot': {
-                'start_time': datetime.now(),
-                'end_time': datetime.now()
-            }
-        },
-        {
-            'title': 'Artificial Intelligence with Python',
-            'id': 2,
-            'room': {
-                'name': 'Room 2',
-                'capacity': '300'
-            },
-            'speaker': {
-                'name': 'Jason Smith'
-            },
-            'timeslot': {
-                'start_time': datetime.now(),
-                'end_time': datetime.now()
-            }
-        },
-        {
-            'title': 'Object Oriented Programming',
-            'id': 0,
-            'room': {
-                'name': 'Room 1',
-                'capacity': '500'
-            },
-            'speaker': {
-                'name': 'John Smith'
-            },
-            'timeslot': {
-                'start_time': datetime.now(),
-                'end_time': datetime.now()
-            }
-        },
-        {
-            'title': 'Artificial Intelligence with Python',
-            'id': 2,
-            'room': {
-                'name': 'Room 2',
-                'capacity': '300'
-            },
-            'speaker': {
-                'name': 'Jason Smith'
-            },
-            'timeslot': {
-                'start_time': datetime.now(),
-                'end_time': datetime.now()
-            }
-        },
-    ]
+
     context = {
         'session_list': session_list
     }
@@ -117,76 +27,17 @@ def attendance(request, id):
 
 
 def admin(request):
+    venue_list = Venue.objects.order_by()
+    event_list = Event.objects.order_by()
     room_list = Room.objects.order_by()
     speaker_list = Speaker.objects.order_by()
     time_list = Timeslot.objects.order_by()
     session_list = Session.objects.order_by()
     template = loader.get_template('admin.html')
-    room_list = [
-        {
-            'name': 'Room 1',
-            'capacity': 500
-        },
-        {
-            'name': 'Room 2',
-            'capacity': 800
-        }
-    ]
-    speaker_list = [
-        {
-            'name': 'John Smith',
-            'email': 'john@gmail.com',
-            'phone': '(123) 456-7890'
-        },
-        {
-            'name': 'Jason Smith',
-            'email': 'jason@gmail.com',
-            'phone': '(098) 765-4321'
-        }
-    ]
-    time_list = [
-        {
-            'start_time': datetime.now(),
-            'end_time': datetime.now(),
-            'duration': 60
-        },
-        {
-            'start_time': datetime.now(),
-            'end_time': datetime.now(),
-            'duration': 120
-        }
-    ]
-    session_list = [
-        {
-            'title': 'Object Oriented Programming',
-            'room': {
-                'name': 'Room 1',
-                'capacity': '500'
-            },
-            'speaker': {
-                'name': 'John Smith'
-            },
-            'timeslot': {
-                'start_time': datetime.now(),
-                'end_time': datetime.now()
-            }
-        },
-        {
-            'title': 'Artificial Intelligence with Python',
-            'room': {
-                'name': 'Room 2',
-                'capacity': '300'
-            },
-            'speaker': {
-                'name': 'Jason Smith'
-            },
-            'timeslot': {
-                'start_time': datetime.now(),
-                'end_time': datetime.now()
-            }
-        }
-    ]
+
     context = {
+        'venue_list': venue_list,
+        'event_list': event_list,
         'room_list': room_list,
         'speaker_list': speaker_list,
         'time_list': time_list,
@@ -195,16 +46,56 @@ def admin(request):
     return HttpResponse(template.render(context, request))
 
 
-def form(request, type, action):
-    types = {'room', 'speaker','timeslot', 'session'}
-    actions = {'add', 'edit'}
-    if type in types and action in actions:
+def form_add(request, type):
+
+    if request.method == 'POST':
+
+        if type == 'room':
+            pass
+        elif type == 'speaker':
+            form = SpeakerForm(request.POST)
+        elif type == 'timeslot':
+            pass
+        elif type == 'session':
+            pass
+        elif type == 'venue':
+            form = VenueForm(request.POST)
+        elif type == 'event':
+            form = EventForm(request.POST)
+        else:
+            return HttpResponseNotFound("Invalid form option(s)")
+
+        if form.is_valid():
+
+            form.save()
+            return HttpResponseRedirect('/admin/')
+
+    else:
+
+        if type == 'room':
+            pass
+        elif type == 'speaker':
+            form = SpeakerForm()
+        elif type == 'timeslot':
+            pass
+        elif type == 'session':
+            pass
+        elif type == 'venue':
+            form = VenueForm()
+        elif type == 'event':
+            form = EventForm()
+        else:
+            return HttpResponseNotFound("Invalid form option(s)")
+
         template = loader.get_template('form.html')
         context = {
+            'form': form,
             'type': type,
-            'action': action,
-            'form_header': action.capitalize() + ' ' + type.capitalize(),
+            'action': 'add',
+            'form_header': 'Add ' + type.capitalize(),
         }
         return HttpResponse(template.render(context, request))
-    else:
-        return HttpResponseNotFound("Invalid form option(s)")
+
+
+def form_edit(request, type):
+    pass

@@ -120,8 +120,91 @@
 
                         <!-- Grid Item -->
                         <div class="col-xl-6">
+                            {% if type == 'venue' %}
+                                <!-- Card -->
+                                <div class="dt-card dt-card__full-height">
 
-                            {% if type == 'room' %}
+                                    <!-- Card Header -->
+                                    <div class="dt-card__header">
+
+                                        <!-- Card Heading -->
+                                        <div class="dt-card__heading">
+                                            <h3 class="dt-card__title">{{ form_header }}</h3>
+                                        </div>
+                                        <!-- /card heading -->
+
+                                    </div>
+                                    <!-- /card header -->
+
+                                    <!-- Card Body -->
+                                    <div class="dt-card__body">
+
+                                        <!-- Form -->
+                                        <form action="" method="post">
+                                            {% csrf_token %}
+
+                                            {{ form.as_p }}
+
+                                            <!-- Form Group -->
+                                            <div class="form-group form-row">
+                                                <div class="col-xl-9 offset-xl-3">
+                                                    <button type="submit" class="btn btn-primary text-uppercase">Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <!-- /form group -->
+
+                                        </form>
+                                        <!-- /form -->
+
+                                    </div>
+                                    <!-- /card body -->
+
+                                </div>
+                                <!-- /card -->
+                                {% elif type == 'event' %}
+                                <!-- Card -->
+                                <div class="dt-card dt-card__full-height">
+
+                                    <!-- Card Header -->
+                                    <div class="dt-card__header">
+
+                                        <!-- Card Heading -->
+                                        <div class="dt-card__heading">
+                                            <h3 class="dt-card__title">{{ form_header }}</h3>
+                                        </div>
+                                        <!-- /card heading -->
+
+                                    </div>
+                                    <!-- /card header -->
+
+                                    <!-- Card Body -->
+                                    <div class="dt-card__body">
+
+                                        <!-- Form -->
+                                        <form action="" method="post">
+                                            {% csrf_token %}
+
+                                            {{ form.as_p }}
+
+                                            <!-- Form Group -->
+                                            <div class="form-group form-row">
+                                                <div class="col-xl-9 offset-xl-3">
+                                                    <button type="submit" class="btn btn-primary text-uppercase">Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <!-- /form group -->
+
+                                        </form>
+                                        <!-- /form -->
+
+                                    </div>
+                                    <!-- /card body -->
+
+                                </div>
+                                <!-- /card -->
+                            {% elif type == 'room' %}
                                 <!-- Card -->
                                 <div class="dt-card dt-card__full-height">
 
@@ -203,53 +286,10 @@
                                     <div class="dt-card__body">
 
                                         <!-- Form -->
-                                        <form>
+                                        <form action="" method="post">
+                                            {% csrf_token %}
 
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="first-name">First
-                                                    Name</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="text" class="form-control" id="first-name"
-                                                           placeholder="First name">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="last-name">Last
-                                                    Name</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="text" class="form-control" id="last-name"
-                                                           placeholder="Last name">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="email">Email Address</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="email" class="form-control" id="email"
-                                                           placeholder="name@domain.com">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="phone">Phone Number</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="tel" class="form-control" name="phone"
-                                                           pattern="[0-9]{10}" placeholder="(123) 456-7890">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
+                                            {{ form.as_p }}
 
                                             <!-- Form Group -->
                                             <div class="form-group form-row">
@@ -277,7 +317,7 @@
 
                                         <!-- Card Heading -->
                                         <div class="dt-card__heading">
-                                            <h3 class="dt-card__title">{% if action == add %}Add{% elif action == edit %}Edit{% endif %} Time Slot</h3>
+                                            <h3 class="dt-card__title">{% if action == add %}Add{% elif action == edit %}Edit{% endif %} Timeslot</h3>
                                         </div>
                                         <!-- /card heading -->
 

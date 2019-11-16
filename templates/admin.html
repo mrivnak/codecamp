@@ -124,6 +124,149 @@
                     <!-- Grid -->
                     <div class="row">
 
+                        <!-- Venues -->
+                        <!-- Grid Item -->
+                        <div class="col-xl-6 col-md-6 order-xl-3">
+
+                            <!-- Card -->
+                            <div class="dt-card dt-card__full-height pb-4">
+
+                                <!-- Card Header -->
+                                <div class="dt-card__header mb-3">
+
+                                    <!-- Card Heading -->
+                                    <div class="dt-card__heading">
+                                        <h3 class="dt-card__title">Venues</h3>
+                                    </div>
+                                    <!-- /card heading -->
+
+                                    <!-- Card Tools -->
+                                    <div class="dt-card__tools">
+                                        <a href="forms/venue/add"><button type="button" class="btn btn-outline-primary btn-sm mr-2 mb-2">Add venue
+                                        </button></a>
+                                    </div>
+                                    <!-- /card tools -->
+
+                                </div>
+                                <!-- /card header -->
+
+                                <!-- Card Body -->
+                                <div class="dt-card__body p-0 max-h-400 ps-custom-scrollbar">
+
+                                    <!-- Widget -->
+                                    <div class="dt-widget dt-widget-separator dt-widget-hover">
+
+                                        {% if venue_list %}
+                                            {% for venue in venue_list %}
+                                                <!-- Widget Item -->
+                                                <div class="dt-widget__item">
+
+                                                    <!-- Widget Info -->
+                                                    <div class="dt-widget__info text-truncate">
+                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ venue.venue_name }}</a>
+                                                        <p class="dt-widget__subtitle text-truncate text-light-gray">
+                                                            {{ venue.address }}
+                                                        </p>
+                                                    </div>
+                                                    <!-- /widget info -->
+
+                                                    <!-- Widget Extra -->
+                                                    <div class="dt-extra animate-slide align-self-center">
+                                                        <div class="slide-content">
+                                                            <a href="javascript:void(0)"><i class="icon icon-editors icon-fw icon-xl"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /widget extra -->
+
+                                                </div>
+                                                <!-- /widgets item -->
+                                            {% endfor %}
+                                        {% endif %}
+
+                                    </div>
+                                    <!-- /widget -->
+
+                                </div>
+                                <!-- /card body -->
+
+                            </div>
+                            <!-- /card -->
+
+                        </div>
+                        <!-- /grid item -->
+
+                        <!-- Events -->
+                        <!-- Grid Item -->
+                        <div class="col-xl-6 col-md-6 order-xl-3">
+
+                            <!-- Card -->
+                            <div class="dt-card dt-card__full-height pb-4">
+
+                                <!-- Card Header -->
+                                <div class="dt-card__header mb-3">
+
+                                    <!-- Card Heading -->
+                                    <div class="dt-card__heading">
+                                        <h3 class="dt-card__title">Events</h3>
+                                    </div>
+                                    <!-- /card heading -->
+
+                                    <!-- Card Tools -->
+                                    <div class="dt-card__tools">
+                                        <a href="forms/event/add"><button type="button" class="btn btn-outline-primary btn-sm mr-2 mb-2">Add event
+                                        </button></a>
+                                    </div>
+                                    <!-- /card tools -->
+
+                                </div>
+                                <!-- /card header -->
+
+                                <!-- Card Body -->
+                                <div class="dt-card__body p-0 max-h-400 ps-custom-scrollbar">
+
+                                    <!-- Widget -->
+                                    <div class="dt-widget dt-widget-separator dt-widget-hover">
+
+                                        {% if event_list %}
+                                            {% for event in event_list %}
+                                                <!-- Widget Item -->
+                                                <div class="dt-widget__item">
+
+                                                    <!-- Widget Info -->
+                                                    <div class="dt-widget__info text-truncate">
+                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ event.event_name }}</a>
+                                                        <p class="dt-widget__subtitle text-truncate text-light-gray">
+                                                            {{ event.start_date }}, {{ event.start_time }} - {{ event.end_date }}, {{ event.end_time }}
+                                                        </p>
+                                                    </div>
+                                                    <!-- /widget info -->
+
+                                                    <!-- Widget Extra -->
+                                                    <div class="dt-extra animate-slide align-self-center">
+                                                        <div class="slide-content">
+                                                            <a href="javascript:void(0)"><i class="icon icon-editors icon-fw icon-xl"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /widget extra -->
+
+                                                </div>
+                                                <!-- /widgets item -->
+                                            {% endfor %}
+                                        {% endif %}
+
+                                    </div>
+                                    <!-- /widget -->
+
+                                </div>
+                                <!-- /card body -->
+
+                            </div>
+                            <!-- /card -->
+
+                        </div>
+                        <!-- /grid item -->
+
+                        <!-- Rooms -->
                         <!-- Grid Item -->
                         <div class="col-xl-6 col-md-6 order-xl-3">
 
@@ -194,6 +337,7 @@
                         </div>
                         <!-- /grid item -->
 
+                        <!-- Speakers -->
                         <!-- Grid Item -->
                         <div class="col-xl-6 col-md-6 order-xl-3">
 
@@ -232,7 +376,7 @@
 
                                                     <!-- Widget Info -->
                                                     <div class="dt-widget__info text-truncate">
-                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ speaker.name }}</a>
+                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ speaker.first_name}} {{ speaker.last_name }}</a>
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
                                                             {{ speaker.email }}{% if speaker.email and speaker.phone %}<br>{% endif %}
                                                             {{ speaker.phone }}
@@ -265,6 +409,7 @@
                         </div>
                         <!-- /grid item -->
 
+                        <!-- Timeslots -->
                         <!-- Grid Item -->
                         <div class="col-xl-6 col-md-6 order-xl-3">
 
@@ -335,6 +480,7 @@
                         </div>
                         <!-- /grid item -->
 
+                        <!-- Sessions -->
                         <!-- Grid Item -->
                         <div class="col-xl-6 col-md-6 order-xl-3">
 
@@ -364,7 +510,7 @@
                                 <div class="dt-card__body p-0 max-h-400 ps-custom-scrollbar">
 
                                     <!-- Widget -->
-                                    <div class="dt-widget dt-widget-hover">
+                                    <div class="dt-widget dt-widget-separator dt-widget-hover">
 
                                         {% if session_list %}
                                             {% for session in session_list %}
@@ -406,6 +552,7 @@
 
                         </div>
                         <!-- /grid item -->
+
                     </div>
                     <!-- /grid -->
 
