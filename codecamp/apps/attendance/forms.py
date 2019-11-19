@@ -17,7 +17,7 @@ class EventForm(forms.ModelForm):
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ['room_name', 'capacity']
+        fields = ['room_name', 'capacity', 'Venue']
 
 
 class TimeslotForm(forms.ModelForm):
@@ -36,3 +36,9 @@ class SessionForm(forms.ModelForm):
     class Meta:
         model = Session
         fields = ['session_name', 'Event', 'Room', 'Timeslot', 'Speaker']
+
+
+class AttendanceForm(forms.ModelForm):
+    class Meta:
+        model = Session
+        fields = ['attendance']

@@ -305,7 +305,7 @@
 
                                                     <!-- Widget Info -->
                                                     <div class="dt-widget__info text-truncate">
-                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ room.name }}</a>
+                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ room.room_name }}</a>
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
                                                             Capacity: {{ room.capacity }} persons
                                                         </p>
@@ -441,14 +441,14 @@
                                     <!-- Widget -->
                                     <div class="dt-widget dt-widget-separator dt-widget-hover">
 
-                                        {% if time_list %}
-                                            {% for time in time_list %}
+                                        {% if duration_list %}
+                                            {% for time in duration_list %}
                                                 <!-- Widget Item -->
                                                 <div class="dt-widget__item">
 
                                                     <!-- Widget Info -->
                                                     <div class="dt-widget__info text-truncate">
-                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ time.start_time }} - {{ time.end_time }}</a>
+                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ time.time.date }} | {{ time.time.start_time }} - {{ time.time.end_time }}</a>
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
                                                             {{ time.duration }} minutes
                                                         </p>
@@ -519,10 +519,10 @@
 
                                                     <!-- Widget Info -->
                                                     <div class="dt-widget__info text-truncate">
-                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ session.title }}</a>
+                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ session.session_name }}</a>
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
-                                                            {{ session.timeslot.start_time }} - {{ session.timeslot.end_time }}<br>
-                                                            {{ session.room.name }}<br>
+                                                            {{ session.Timeslot.date }} | {{ session.Timeslot.start_time }} - {{ session.Timeslot.end_time }}<br>
+                                                            {{ session.Room.room_name }}<br>
                                                             <a class="text-dark" href="javascript:void(0)">{{ session.speaker.name }}</a>
                                                         </p>
                                                     </div>

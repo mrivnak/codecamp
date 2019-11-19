@@ -45,6 +45,9 @@ class Timeslot(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
 
+    def __str__(self):
+        return '{} | {} - {}'.format(self.date, self.start_time, self.end_time)
+
 
 class Speaker(models.Model):
     SpeakerID = models.AutoField(primary_key=True)
@@ -60,7 +63,7 @@ class Speaker(models.Model):
 class Session(models.Model):
     SpeechID = models.AutoField(primary_key=True)
     session_name = models.CharField(max_length=50, name='session_name')
-    attendance = models.IntegerField()
+    attendance = models.IntegerField(default=0)
     Event = models.ForeignKey(Event, on_delete=models.CASCADE)
     Room = models.ForeignKey(Room, on_delete=models.CASCADE)
     Timeslot = models.ForeignKey(Timeslot, on_delete=models.CASCADE)

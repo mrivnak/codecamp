@@ -101,6 +101,14 @@
 
                         </li>
                         <!-- /menu item -->
+                        <!-- Menu Item -->
+                        <li class="dt-side-nav__item">
+                            <a href="/data/" class="dt-side-nav__link" title="Dashboard">
+                                <i class="icon icon-tables icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Data</span>
+                            </a>
+                        </li>
+                        <!-- /menu item -->
 
                     </ul>
                     <!-- /sidebar navigation -->
@@ -136,7 +144,7 @@
 
                                     <!-- Card Heading -->
                                     <div class="dt-card__heading">
-                                        <h2 class="dt-card__title">{{ session.title }}</h2>
+                                        <h2 class="dt-card__title">{{ session.session_name }}</h2>
                                     </div>
                                     <!-- /card heading -->
 
@@ -160,10 +168,10 @@
 
                                             <!-- Widget Info -->
                                             <div class="dt-widget__info text-truncate">
-                                                <p class="dt-widget__title text-truncate">{{ session.speaker.name }}</p>
-                                                <p class="dt-widget__subtitle text-truncate text-light-gray">
-                                                    {{ session.room.name }}<br>
-                                                    {{ session.timeslot.start_time }} - {{ session.timeslot.end_time }}
+                                                <p class="dt-widget__subtitle text-truncate">{{ session.Speaker.first_name }} {{ session.Speaker.last_name }}</p>
+                                                <p class="dt-widget__info text-truncate text-light-gray">
+                                                    {{ session.Room.room_name }}<br>
+                                                    {{ session.Timeslot.date }} | {{ session.Timeslot.start_time }} - {{ session.Timeslot.end_time }}
                                                 </p>
                                             </div>
                                             <!-- /widget info -->

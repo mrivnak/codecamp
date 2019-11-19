@@ -1,10 +1,11 @@
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
 
-from datetime import datetime
+from datetime import datetime, date
 
 from .models import Venue, Event, Room, Speaker, Timeslot, Session
-from .forms import VenueForm, EventForm, SpeakerForm
+from .forms import VenueForm, EventForm, RoomForm, TimeslotForm, SpeakerForm, SessionForm, AttendanceForm
 
 
 def index(request):
@@ -18,22 +19,39 @@ def index(request):
 
 
 def attendance(request, id):
-    session = Session.objects.get(pk=id)
     template = loader.get_template('attendance.html')
+
+    instance = get_object_or_404(Session, pk=id)
+    form = AttendanceForm(request.POST or None, instance=instance)
+
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+
     context = {
         'id': id,
+        'form': form,
+        'session': instance,
     }
     return HttpResponse(template.render(context, request))
 
 
 def admin(request):
+    template = loader.get_template('admin.html')
+
     venue_list = Venue.objects.order_by()
     event_list = Event.objects.order_by()
     room_list = Room.objects.order_by()
     speaker_list = Speaker.objects.order_by()
     time_list = Timeslot.objects.order_by()
     session_list = Session.objects.order_by()
-    template = loader.get_template('admin.html')
+
+    duration_list = []
+
+    for time in time_list:
+        duration_list.append({'time': time,
+                              'duration': int((datetime.combine(date.today(), time.end_time)
+                                               - datetime.combine(date.today(), time.start_time)).seconds / 60)})
 
     context = {
         'venue_list': venue_list,
@@ -41,6 +59,7 @@ def admin(request):
         'room_list': room_list,
         'speaker_list': speaker_list,
         'time_list': time_list,
+        'duration_list': duration_list,
         'session_list': session_list
     }
     return HttpResponse(template.render(context, request))
@@ -51,13 +70,13 @@ def form_add(request, type):
     if request.method == 'POST':
 
         if type == 'room':
-            pass
+            form = RoomForm(request.POST)
         elif type == 'speaker':
             form = SpeakerForm(request.POST)
         elif type == 'timeslot':
-            pass
+            form = TimeslotForm(request.POST)
         elif type == 'session':
-            pass
+            form = SessionForm(request.POST)
         elif type == 'venue':
             form = VenueForm(request.POST)
         elif type == 'event':
@@ -73,13 +92,13 @@ def form_add(request, type):
     else:
 
         if type == 'room':
-            pass
+            form = RoomForm()
         elif type == 'speaker':
             form = SpeakerForm()
         elif type == 'timeslot':
-            pass
+            form = TimeslotForm()
         elif type == 'session':
-            pass
+            form = SessionForm()
         elif type == 'venue':
             form = VenueForm()
         elif type == 'event':
@@ -97,5 +116,19 @@ def form_add(request, type):
         return HttpResponse(template.render(context, request))
 
 
-def form_edit(request, type):
+def form_edit(request, type, id):
     pass
+
+
+def delete(request, type, id):
+    pass
+
+
+def data(request):
+    session_list = Session.objects.order_by()
+    template = loader.get_template('data.html')
+
+    context = {
+        'session_list': session_list
+    }
+    return HttpResponse(template.render(context, request))
