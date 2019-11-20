@@ -128,5 +128,5 @@ STATICFILES_DIRS = [
 ]
 
 # Formatting
-TIME_INPUT_FORMATS = ('%I:%M %p',)
+TIME_INPUT_FORMATS = ('%H:%M',)
 DATE_INPUT_FORMATS = ('%M/%D/%Y',)

@@ -54,16 +54,16 @@ class Speaker(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()  # todo: verify valid email in backend before allowing addition. regex?
-    phone_num = models.IntegerField()
+    phone_number = models.IntegerField()
 
     def __str__(self):
-        return self.first_name+self.last_name
+        return self.first_name + '' + self.last_name
 
 
 class Session(models.Model):
     SpeechID = models.AutoField(primary_key=True)
     session_name = models.CharField(max_length=50, name='session_name')
-    attendance = models.IntegerField(default=0)
+    attendance = models.IntegerField(default=-1)
     Event = models.ForeignKey(Event, on_delete=models.CASCADE)
     Room = models.ForeignKey(Room, on_delete=models.CASCADE)
     Timeslot = models.ForeignKey(Timeslot, on_delete=models.CASCADE)

@@ -98,7 +98,14 @@
                                 <i class="icon icon-dashboard icon-fw icon-lg"></i>
                                 <span class="dt-side-nav__text">Dashboard</span>
                             </a>
-
+                        </li>
+                        <!-- /menu item -->
+                        <!-- Menu Item -->
+                        <li class="dt-side-nav__item">
+                            <a href="/admin/data/" class="dt-side-nav__link" title="Dashboard">
+                                <i class="icon icon-tables icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Data</span>
+                            </a>
                         </li>
                         <!-- /menu item -->
 
@@ -378,8 +385,8 @@
                                                     <div class="dt-widget__info text-truncate">
                                                         <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ speaker.first_name}} {{ speaker.last_name }}</a>
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
-                                                            {{ speaker.email }}{% if speaker.email and speaker.phone %}<br>{% endif %}
-                                                            {{ speaker.phone }}
+                                                            {{ speaker.email }}{% if speaker.email and speaker.phone_number %}<br>{% endif %}
+                                                            {{ speaker.phone_number }}
                                                         </p>
                                                     </div>
                                                     <!-- /widget info -->
@@ -523,6 +530,7 @@
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
                                                             {{ session.Timeslot.date }} | {{ session.Timeslot.start_time }} - {{ session.Timeslot.end_time }}<br>
                                                             {{ session.Room.room_name }}<br>
+                                                            Attendance: {% if session.attendance < 0 %}N/A{% else %}{{ session.attendance }} persons{% endif %}
                                                             <a class="text-dark" href="javascript:void(0)">{{ session.speaker.name }}</a>
                                                         </p>
                                                     </div>

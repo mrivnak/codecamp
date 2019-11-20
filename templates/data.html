@@ -8,7 +8,7 @@
   <meta name="description" content="Drift - A fully responsive, HTML5 based admin template">
   <meta name="keywords" content="Responsive, HTML5, admin theme, business, professional, jQuery, web design, CSS3, sass">
   <!-- /meta tags -->
-  <title>{{ session.session_name }}</title>
+  <title>Attendance Data</title>
 
   {% load static %}
   <!-- Site favicon -->
@@ -94,15 +94,15 @@
 
                         <!-- Menu Item -->
                         <li class="dt-side-nav__item">
-                            <a href="/" class="dt-side-nav__link" title="Dashboard">
-                                <i class="icon icon-charts icon-fw icon-lg"></i>
-                                <span class="dt-side-nav__text">Attendance</span>
+                            <a href="/admin/" class="dt-side-nav__link" title="Dashboard">
+                                <i class="icon icon-dashboard icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Dashboard</span>
                             </a>
                         </li>
                         <!-- /menu item -->
                         <!-- Menu Item -->
                         <li class="dt-side-nav__item open">
-                            <a href="/" class="dt-side-nav__link" title="Dashboard">
+                            <a href="/admin/data/" class="dt-side-nav__link" title="Dashboard">
                                 <i class="icon icon-tables icon-fw icon-lg"></i>
                                 <span class="dt-side-nav__text">Data</span>
                             </a>
@@ -124,7 +124,7 @@
 
                     <!-- Page Header -->
                     <div class="dt-page__header">
-                        <h1 class="dt-page__title">Codecamp Attendance Data</h1>
+                        <h1 class="dt-page__title">Attendance Data</h1>
                     </div>
                     <!-- /page header -->
 
@@ -159,7 +159,7 @@
                                         <td>{{ session.Event.event_name }}</td>
                                         <td>{{ session.Room.room_name }}</td>
                                         <td>{{ session.Speaker.first_name }} {{ session.Speaker.last_name }}</td>
-                                        <td>{{ session.attendance }}</td>
+                                        <td>{% if session.attendance < 0 %}N/A{% else %}{{ session.attendance }}{% endif %}</td>
                                     </tr>
                                     {% endfor %}
                                     </tbody>
