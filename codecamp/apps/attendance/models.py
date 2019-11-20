@@ -71,3 +71,12 @@ class Session(models.Model):
 
     def __str__(self):
         return self.session_name
+
+class AttendanceReport(models.Model):
+    ReportID = models.AutoField(primary_key=True)
+    Session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    attendance = models.IntegerField(default=-1)
+    report_time = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.session_name
