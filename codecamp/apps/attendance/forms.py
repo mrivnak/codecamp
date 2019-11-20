@@ -1,6 +1,6 @@
 from django import forms
 
-from codecamp.apps.attendance.models import Speaker, Room, Timeslot, Session, Venue, Event
+from codecamp.apps.attendance.models import *
 
 
 class VenueForm(forms.ModelForm):
@@ -153,11 +153,10 @@ class SessionForm(forms.ModelForm):
         fields = ['session_name', 'Event', 'Room', 'Timeslot', 'Speaker']
 
 
-class AttendanceForm(forms.ModelForm):
+class ReportForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(AttendanceForm, self).__init__()
-        self.fields['attendance'].widget.attrs = {'class': 'form-control'}
+        super(ReportForm, self).__init__()
 
     class Meta:
-        model = Session
+        model = AttendanceReport
         fields = ['attendance']

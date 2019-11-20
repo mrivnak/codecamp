@@ -61,7 +61,7 @@ class Speaker(models.Model):
 
 
 class Session(models.Model):
-    SpeechID = models.AutoField(primary_key=True)
+    SessionID = models.AutoField(primary_key=True)
     session_name = models.CharField(max_length=50, name='session_name')
     attendance = models.IntegerField(default=-1)
     Event = models.ForeignKey(Event, on_delete=models.CASCADE)
@@ -72,11 +72,12 @@ class Session(models.Model):
     def __str__(self):
         return self.session_name
 
+
 class AttendanceReport(models.Model):
     ReportID = models.AutoField(primary_key=True)
-    Session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    Session = models.ForeignKey(Session, on_delete=models.CASCADE, null=True)
     attendance = models.IntegerField(default=-1)
-    report_time = models.DateField(auto_now=True)
+    report_time = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.session_name
+        return self.Session.session_name + ' - ' + self.report_time.strftime("%I:%m %p")

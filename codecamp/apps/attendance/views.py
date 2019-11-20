@@ -5,7 +5,7 @@ from django.template import loader
 from datetime import datetime, date
 
 from .models import Venue, Event, Room, Speaker, Timeslot, Session
-from .forms import VenueForm, EventForm, RoomForm, TimeslotForm, SpeakerForm, SessionForm, AttendanceForm
+from .forms import VenueForm, EventForm, RoomForm, TimeslotForm, SpeakerForm, SessionForm, ReportForm
 
 
 def index(request):
@@ -19,21 +19,25 @@ def index(request):
 
 
 def attendance(request, id):
-    template = loader.get_template('attendance.html')
+    id = int(id)  # TODO: cast this better
+    if request.method == 'POST':
 
-    instance = get_object_or_404(Session, pk=id)
-    form = AttendanceForm(request.POST or None, instance=instance)
+        form = ReportForm(request.POST)
 
-    if form.is_valid():
-        form.save()
-        return redirect('/')
+        if form.is_valid() or True:  # TODO: figure out whi is_valid is always false
+            question = form.save()
+            question.Session = Session.objects.get(pk=id)
+            question.save()
+            return HttpResponseRedirect('/')
 
-    context = {
-        'id': id,
-        'form': form,
-        'session': instance,
-    }
-    return HttpResponse(template.render(context, request))
+    else:
+        form = ReportForm()
+
+        template = loader.get_template('attendance.html')
+        context = {
+            'form': form,
+        }
+        return HttpResponse(template.render(context, request))
 
 
 def admin(request):
