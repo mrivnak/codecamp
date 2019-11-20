@@ -101,6 +101,14 @@
 
                         </li>
                         <!-- /menu item -->
+                        <!-- Menu Item -->
+                        <li class="dt-side-nav__item">
+                            <a href="/admin/data/" class="dt-side-nav__link" title="Dashboard">
+                                <i class="icon icon-tables icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Data</span>
+                            </a>
+                        </li>
+                        <!-- /menu item -->
 
                     </ul>
                     <!-- /sidebar navigation -->
@@ -120,8 +128,7 @@
 
                         <!-- Grid Item -->
                         <div class="col-xl-6">
-
-                            {% if type == 'room' %}
+                            {% if type == 'venue' %}
                                 <!-- Card -->
                                 <div class="dt-card dt-card__full-height">
 
@@ -141,40 +148,115 @@
                                     <div class="dt-card__body">
 
                                         <!-- Form -->
-                                        <form>
+                                        <form action="" method="post">
+                                            {% csrf_token %}
 
                                             <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="room-name">Room
-                                                    Name</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="text" class="form-control" id="room-name"
-                                                           placeholder="Enter room name">
-                                                </div>
+                                            <div class="form-group">
+                                                {{ form.as_p }}
                                             </div>
                                             <!-- /form group -->
 
                                             <!-- Form Group -->
                                             <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="capacity">Capacity</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="number" class="form-control" id="capacity"
-                                                           placeholder="Capacity">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <div class="col-xl-9 offset-xl-3">
+                                                <div class="col-xl-6">
                                                     <button type="submit" class="btn btn-primary text-uppercase">Submit
                                                     </button>
                                                 </div>
                                             </div>
                                             <!-- /form group -->
 
+                                        </form>
+                                        <!-- /form -->
+
+                                    </div>
+                                    <!-- /card body -->
+
+                                </div>
+                                <!-- /card -->
+                                {% elif type == 'event' %}
+                                <!-- Card -->
+                                <div class="dt-card dt-card__full-height">
+
+                                    <!-- Card Header -->
+                                    <div class="dt-card__header">
+
+                                        <!-- Card Heading -->
+                                        <div class="dt-card__heading">
+                                            <h3 class="dt-card__title">{{ form_header }}</h3>
+                                        </div>
+                                        <!-- /card heading -->
+
+                                    </div>
+                                    <!-- /card header -->
+
+                                    <!-- Card Body -->
+                                    <div class="dt-card__body">
+
+                                        <!-- Form -->
+                                        <form action="" method="post">
+                                            {% csrf_token %}
+
+                                            <!-- Form Group -->
+                                            <div class="form-group">
+                                                {{ form.as_p }}
+                                            </div>
+                                            <!-- /form group -->
+
+                                            <!-- Form Group -->
+                                            <div class="form-group form-row">
+                                                <div class="col-xl-6">
+                                                    <button type="submit" class="btn btn-primary text-uppercase">Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <!-- /form group -->
+
+                                        </form>
+                                        <!-- /form -->
+
+                                    </div>
+                                    <!-- /card body -->
+
+                                </div>
+                                <!-- /card -->
+                            {% elif type == 'room' %}
+                                <!-- Card -->
+                                <div class="dt-card dt-card__full-height">
+
+                                    <!-- Card Header -->
+                                    <div class="dt-card__header">
+
+                                        <!-- Card Heading -->
+                                        <div class="dt-card__heading">
+                                            <h3 class="dt-card__title">{{ form_header }}</h3>
+                                        </div>
+                                        <!-- /card heading -->
+
+                                    </div>
+                                    <!-- /card header -->
+
+                                    <!-- Card Body -->
+                                    <div class="dt-card__body">
+
+                                        <!-- Form -->
+                                        <form action="" method="post">
+                                            {% csrf_token %}
+
+                                            <!-- Form Group -->
+                                            <div class="form-group">
+                                                {{ form.as_p }}
+                                            </div>
+                                            <!-- /form group -->
+
+                                            <!-- Form Group -->
+                                            <div class="form-group form-row">
+                                                <div class="col-xl-6">
+                                                    <button type="submit" class="btn btn-primary text-uppercase">Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <!-- /form group -->
                                         </form>
                                         <!-- /form -->
 
@@ -203,57 +285,18 @@
                                     <div class="dt-card__body">
 
                                         <!-- Form -->
-                                        <form>
+                                        <form action="" method="post">
+                                            {% csrf_token %}
 
                                             <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="first-name">First
-                                                    Name</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="text" class="form-control" id="first-name"
-                                                           placeholder="First name">
-                                                </div>
+                                            <div class="form-group">
+                                                {{ form.as_p }}
                                             </div>
                                             <!-- /form group -->
 
                                             <!-- Form Group -->
                                             <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="last-name">Last
-                                                    Name</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="text" class="form-control" id="last-name"
-                                                           placeholder="Last name">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="email">Email Address</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="email" class="form-control" id="email"
-                                                           placeholder="name@domain.com">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="phone">Phone Number</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="tel" class="form-control" name="phone"
-                                                           pattern="[0-9]{10}" placeholder="(123) 456-7890">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <div class="col-xl-9 offset-xl-3">
+                                                <div class="col-xl-6">
                                                     <button type="submit" class="btn btn-primary text-uppercase">Submit
                                                     </button>
                                                 </div>
@@ -277,7 +320,7 @@
 
                                         <!-- Card Heading -->
                                         <div class="dt-card__heading">
-                                            <h3 class="dt-card__title">{% if action == add %}Add{% elif action == edit %}Edit{% endif %} Time Slot</h3>
+                                            <h3 class="dt-card__title">{% if action == add %}Add{% elif action == edit %}Edit{% endif %} Timeslot</h3>
                                         </div>
                                         <!-- /card heading -->
 
@@ -288,61 +331,23 @@
                                     <div class="dt-card__body">
 
                                         <!-- Form -->
-                                        <form>
+                                        <form action="" method="post">
+                                            {% csrf_token %}
 
                                             <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="start-date">Start Date</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="date" class="form-control" id="start-date">
-                                                </div>
+                                            <div class="form-group">
+                                                {{ form.as_p }}
                                             </div>
                                             <!-- /form group -->
 
                                             <!-- Form Group -->
                                             <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="start-time">Start Time</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="time" class="form-control" id="start-time">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Separator -->
-                                            <hr class="border-dashed my-8">
-                                            <!-- /separator -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="end-date">End Date</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="date" class="form-control" id="end-date">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="end-time">End Time</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="time" class="form-control" id="end-time">
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <div class="col-xl-9 offset-xl-3">
+                                                <div class="col-xl-6">
                                                     <button type="submit" class="btn btn-primary text-uppercase">Submit
                                                     </button>
                                                 </div>
                                             </div>
                                             <!-- /form group -->
-
                                         </form>
                                         <!-- /form -->
 
@@ -371,81 +376,22 @@
                                     <div class="dt-card__body">
 
                                         <!-- Form -->
-                                        <form>
-
-                                             <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="session-title">Session
-                                                    Title</label>
-
-                                                <div class="col-xl-9">
-                                                    <input type="text" class="form-control" id="session-title">
-                                                </div>
+                                        <form action="" method="post">
+                                            {% csrf_token %}
+                                            <!-- Form Group -->
+                                            <div class="form-group">
+                                                {{ form.as_p }}
                                             </div>
                                             <!-- /form group -->
 
                                             <!-- Form Group -->
                                             <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="room-select">Room
-                                                    Name</label>
-
-                                                <div class="col-xl-9">
-                                                    <select required class="form-control" id="room-select">
-                                                        <option selected value="" disabled>Select room...</option>
-                                                        {% if room_list %}
-                                                            {% for room in room_list %}
-                                                                <option value="{{ room.RoomID }}">room.name</option>
-                                                            {% endfor %}
-                                                        {% endif %}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-                                        
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="speaker-select">Room
-                                                    Name</label>
-
-                                                <div class="col-xl-9">
-                                                    <select required class="form-control" id="speaker-select">
-                                                        <option selected value="" disabled>Select speaker...</option>
-                                                        {% if speaker_list %}
-                                                            {% for speaker in speaker_list %}
-                                                                <option value="{{ speaker.RoomID }}">speaker.name</option>
-                                                            {% endfor %}
-                                                        {% endif %}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <label class="col-xl-3 col-form-label text-sm-right" for="time-select">Timeslot</label>
-
-                                                <div class="col-xl-9">
-                                                    <select required class="form-control" id="room-select">
-                                                        <option selected value="" disabled>Select timeslot...</option>
-                                                        {% if time_list %}
-                                                            {% for time in time_list %}
-                                                                <option value="{{ time.RoomID }}">room.name</option>
-                                                            {% endfor %}
-                                                        {% endif %}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- /form group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group form-row">
-                                                <div class="col-xl-9 offset-xl-3">
+                                                <div class="col-xl-6">
                                                     <button type="submit" class="btn btn-primary text-uppercase">Submit
                                                     </button>
                                                 </div>
                                             </div>
                                             <!-- /form group -->
-
                                         </form>
                                         <!-- /form -->
 

@@ -126,3 +126,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(os.path.dirname(__file__), os.path.pardir, os.path.pardir, 'static')
 ]
+
+# Formatting
+TIME_INPUT_FORMATS = ('%H:%M',)
+DATE_INPUT_FORMATS = ('%M/%D/%Y',)

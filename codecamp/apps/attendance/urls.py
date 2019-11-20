@@ -6,5 +6,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     re_path(r'attendance/(?P<id>\d+)', views.attendance, name='attendance'),
     path('admin/', views.admin, name='admin'),
-    re_path(r'^admin/forms/(?P<type>\w+)/(?P<action>\w+)', views.form, name='form'),
+    path('admin/data/', views.data, name='data'),
+    re_path(r'^admin/forms/(?P<type>\w+)/add', views.form_add, name='form_add'),
+    re_path(r'^admin/forms/(?P<type>\w+)/edit/(?P<id>\d+)', views.form_edit, name='form_edit'),
+    re_path(r'^admin/forms/(?P<type>\w+)/delete/(?P<id>\d+)', views.delete, name='delete')
 ]
