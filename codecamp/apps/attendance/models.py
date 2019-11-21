@@ -39,16 +39,6 @@ class Room(models.Model):
         return self.room_name
 
 
-class Timeslot(models.Model):
-    TimeslotID = models.AutoField(primary_key=True)
-    date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
-
-    def __str__(self):
-        return '{} | {} - {}'.format(self.date, self.start_time, self.end_time)
-
-
 class Speaker(models.Model):
     SpeakerID = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
@@ -63,10 +53,11 @@ class Speaker(models.Model):
 class Session(models.Model):
     SessionID = models.AutoField(primary_key=True)
     session_name = models.CharField(max_length=50, name='session_name')
-    attendance = models.IntegerField(default=-1)
+    date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
     Event = models.ForeignKey(Event, on_delete=models.CASCADE)
     Room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    Timeslot = models.ForeignKey(Timeslot, on_delete=models.CASCADE)
     Speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -75,9 +66,9 @@ class Session(models.Model):
 
 class AttendanceReport(models.Model):
     ReportID = models.AutoField(primary_key=True)
-    Session = models.ForeignKey(Session, on_delete=models.CASCADE, null=True)
-    attendance = models.IntegerField(default=-1)
-    report_time = models.DateTimeField(auto_now=True)
+    Session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    attendance = models.IntegerField()
+    report_time = models.TimeField(auto_now=True)
 
     def __str__(self):
         return self.Session.session_name + ' - ' + self.report_time.strftime("%I:%m %p")
