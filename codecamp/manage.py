@@ -4,6 +4,8 @@ import os
 import sys
 
 def main():
+    sys.path.append('..')  # append project root dir to PYTHONPATH
+    sys.path.append('.')  # append this file's directory to PYTHONPATH
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'codecamp.settings.settings')  # fix this
     try:
         from django.core.management import execute_from_command_line
