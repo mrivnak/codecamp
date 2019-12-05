@@ -147,7 +147,82 @@ def form_add(request, type):
 
 
 def form_edit(request, type, id):
-    pass
+    instance = None
+    if request.method == 'POST':
+
+        if type == 'room':
+            instance = Room.objects.get(pk=id)
+            form = RoomForm(request.POST, instance=instance)
+        elif type == 'speaker':
+            instance = Speaker.objects.get(pk=id)
+            form = SpeakerForm(request.POST, instance=instance)
+        elif type == 'session':
+            instance = Session.objects.get(pk=id)
+            form = SessionForm(request.POST, instance=instance)
+        elif type == 'venue':
+            instance = Venue.objects.get(pk=id)
+            form = VenueForm(request.POST, instance=instance)
+        elif type == 'event':
+            instance = Event.objects.get(pk=id)
+            form = EventForm(request.POST, instance=instance)
+        else:
+            return HttpResponseNotFound("Invalid form option(s)")
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/admin/')
+
+    else:
+
+        if type == 'room':
+            instance = Room.objects.get(pk=id)
+            form = RoomForm(instance=instance)
+        elif type == 'speaker':
+            instance = Speaker.objects.get(pk=id)
+            form = SpeakerForm(instance=instance)
+        elif type == 'session':
+            instance = Session.objects.get(pk=id)
+            form = SessionForm(instance=instance)
+        elif type == 'venue':
+            instance = Venue.objects.get(pk=id)
+            form = VenueForm(instance=instance)
+        elif type == 'event':
+            instance = Event.objects.get(pk=id)
+            form = EventForm(instance=instance)
+        else:
+            return HttpResponseNotFound("Invalid form option(s)")
+
+        template = loader.get_template('form.html')
+        context = {
+            'form': form,
+            'type': type,
+            'action': 'add',
+            'form_header': 'Add ' + type.capitalize(),
+        }
+        return HttpResponse(template.render(context, request))
+
+
+def delete(request, type, id):
+    instance = None
+    if type == 'room':
+        instance = Room.objects.get(pk=id)
+        instance.delete()
+    elif type == 'speaker':
+        instance = Speaker.objects.get(pk=id)
+        instance.delete()
+    elif type == 'session':
+        instance = Session.objects.get(pk=id)
+        instance.delete()
+    elif type == 'venue':
+        instance = Venue.objects.get(pk=id)
+        instance.delete()
+    elif type == 'event':
+        instance = Event.objects.get(pk=id)
+        instance.delete()
+    else:
+        return HttpResponseNotFound("Invalid form option(s)")
+
+    return HttpResponseRedirect('/admin/')
 
 
 def delete(request, type, id):
