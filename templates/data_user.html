@@ -97,7 +97,7 @@
                         <!-- Menu Item -->
                         <li class="dt-side-nav__item">
                             <a href="/" class="dt-side-nav__link" title="Attendance">
-                                <i class="icon icon-dashboard icon-fw icon-lg"></i>
+                                <i class="icon icon-charts icon-fw icon-lg"></i>
                                 <span class="dt-side-nav__text">Attendance</span>
                             </a>
                         </li>
@@ -141,7 +141,6 @@
                                 <table class="table table-striped mb-0">
                                     <thead class="thead-light">
                                     <tr>
-                                        <th scope="col">ID</th>
                                         <th class="text-uppercase" scope="col">Session Name</th>
                                         <th class="text-uppercase" scope="col">Date</th>
                                         <th class="text-uppercase" scope="col">Time</th>
@@ -155,9 +154,7 @@
                                     <tbody>
                                     {% for report in report_list %}
                                     <tr>
-
-                                        <th scope="row"><a id="{{ report.pk }}"></a>{{report.pk}}</th>
-                                        <td>{{ report.Session.session_name }}</td>
+                                        <td><a id="{{ report.pk }}"></a>{{ report.Session.session_name }}</td>
                                         <td>{{ report.Session.date }}</td>
                                         <td>{{ report.Session.start_time }} - {{ report.Session.end_time }}</td>
                                         <td>{{ report.Session.Event.event_name }}</td>

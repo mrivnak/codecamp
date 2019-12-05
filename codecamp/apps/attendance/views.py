@@ -16,9 +16,16 @@ def index(request):
     for session in session_list:
         sess = Session.objects.get(pk=session.pk)
         reports = sess.attendancereport_set.all()
+        full_reports = []
+        for i, report in enumerate(reports):
+            full_reports.append({
+                'report': report,
+                'index': i+1,
+            })
+
         full_session_list.append({
             'session': session,
-            'reports': reports,
+            'reports': full_reports,
         })
 
     context = {
@@ -163,5 +170,13 @@ def data_user(request):
 
     context = {
         'report_list': report_list
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def login(request):
+    template = loader.get_template('login.html')
+
+    context = {
     }
     return HttpResponse(template.render(context, request))

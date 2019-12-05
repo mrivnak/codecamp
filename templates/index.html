@@ -147,7 +147,11 @@
 
                                     <!-- Card Title-->
                                     <h2 class="card-title">{{ session.session.session_name }}</h2>
-                                    <!-- Card Title-->
+                                    <!-- /card title-->
+
+                                    <!-- Card Subitle-->
+                                    <h2 class="card-subtitle">{{ session.session.Speaker.first_name }} {{ session.session.Speaker.last_name }}</h2>
+                                    <!-- /card subtitle-->
 
                                     <!-- Card Text-->
                                     <p class="card-text">
@@ -158,7 +162,7 @@
 
                                     <!-- Card Link-->
                                     {% for report in session.reports %}
-                                        <a href="data#{{ report.pk }}" class="card-link">Report {{ report.pk }}: {{ report.attendance }} ppl.</a>
+                                        <a href="data#{{ report.report.pk }}" class="card-link">Report {{ report.index }}: {{ report.report.attendance }} ppl.</a><br>
                                     {% endfor %}
                                     <!-- /card link-->
 

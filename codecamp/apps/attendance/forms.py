@@ -90,17 +90,15 @@ class SpeakerForm(forms.ModelForm):
                 'type': 'tel',
                 'class': 'form-control',
                 'pattern': '[0-9]{10-13}',
-                # 'placeholder': '000-000-0000'
             }
         )
     )
 
     def clean_phone_num(self):
         phone_num = self.cleaned_data['phone_number']
-        phone_num = phone_num.replace('-', '')
-        phone_num = phone_num.replace('(', '')
-        phone_num = phone_num.replace(')', '')
-        phone_num = phone_num.replace(' ', '')
+        for char in phone_num:
+            if char not in range(9):
+                phone_num.remove(char)
         return phone_num
 
     class Meta:
