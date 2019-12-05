@@ -1,8 +1,7 @@
 # Codecamp (Attendance Tracker)
 
-### Usage (Development)
-Todo: usage docs  
+### Usage (Deployment)
 Steps:  
-- Set up interpreter settings
-- Set up django project settings
-- set up pycharm configuration for "manage.py"
+- Set up python virtual environment (if desired)
+- pip install docker-compose
+- Run "docker-compose up -d" in project root dir to run container in detached mode.
