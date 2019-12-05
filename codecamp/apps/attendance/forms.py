@@ -153,3 +153,7 @@ class ReportForm(forms.ModelForm):
     class Meta:
         model = AttendanceReport
         fields = ['Session', 'attendance']
+
+
+class LoginForm(forms.Form):
+    pass
