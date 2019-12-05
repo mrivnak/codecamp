@@ -67,7 +67,9 @@
 
                 <!-- Header toolbar-->
                 <div class="dt-header__toolbar">
-
+                    <div class="dt-nav-wrapper">
+                        <a href="/admin/" class="dt-nav__link">Admin</a>
+                    </div>
                 </div>
                 <!-- /header toolbar -->
 
@@ -94,13 +96,22 @@
 
                         <!-- Menu Item -->
                         <li class="dt-side-nav__item open">
-                            <a href="javascript:void(0)" class="dt-side-nav__link" title="Dashboard">
+                            <a href="javascript:void(0)" class="dt-side-nav__link" title="Attendance">
                                 <i class="icon icon-charts icon-fw icon-lg"></i>
                                 <span class="dt-side-nav__text">Attendance</span>
                             </a>
 
                         </li>
                         <!-- /menu item -->
+                        <!-- Menu Item -->
+                        <li class="dt-side-nav__item">
+                            <a href="/data/" class="dt-side-nav__link" title="Data">
+                                <i class="icon icon-tables icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Data</span>
+                            </a>
+                        </li>
+                        <!-- /menu item -->
+
 
                     </ul>
                     <!-- /sidebar navigation -->
@@ -118,6 +129,7 @@
                     <!-- Page Header -->
                     <div class="dt-page__header">
                         <h1 class="dt-page__title">Codecamp Attendance</h1>
+                        <a class="btn btn-primary" href="attendance">Create Attendance Report</a>
                     </div>
                     <!-- /page header -->
 
@@ -127,52 +139,28 @@
                         {% for session in session_list %}
                         <!-- Grid Item -->
                         <div class="col-xl-6 col-md-6 order-xl-3">
-
                             <!-- Card -->
-                            <div class="dt-card dt-card__full-height pb-4">
-
-                                <!-- Card Header -->
-                                <div class="dt-card__header mb-3">
-
-                                    <!-- Card Heading -->
-                                    <div class="dt-card__heading">
-                                        <h2 class="dt-card__title">{{ session.session_name }}</h2>
-                                    </div>
-                                    <!-- /card heading -->
-
-                                    <!-- Card Tools -->
-                                    <div class="dt-card__tools">
-                                        <a href="attendance/{{ session.pk }}"><button type="button" class="btn btn-outline-primary btn-sm mr-2 mb-2">View
-                                        </button></a>
-                                    </div>
-                                    <!-- /card tools -->
-
-                                </div>
-                                <!-- /card header -->
+                            <div class="card">
 
                                 <!-- Card Body -->
-                                <div class="dt-card__body p-0 max-h-400 ps-custom-scrollbar">
+                                <div class="card-body">
 
-                                    <!-- Widget -->
-                                    <div class="dt-widget dt-widget-separator dt-widget-hover">
-                                        <!-- Widget Item -->
-                                        <div class="dt-widget__item">
+                                    <!-- Card Title-->
+                                    <h2 class="card-title">{{ session.session.session_name }}</h2>
+                                    <!-- Card Title-->
 
-                                            <!-- Widget Info -->
-                                            <div class="dt-widget__info text-truncate">
-                                                <p class="dt-widget__subtitle text-truncate">{{ session.Speaker.first_name }} {{ session.Speaker.last_name }}</p>
-                                                <p class="dt-widget__info text-truncate text-light-gray">
-                                                    {{ session.Room.room_name }}<br>
-                                                    {{ session.Timeslot.date }} | {{ session.Timeslot.start_time }} - {{ session.Timeslot.end_time }}
-                                                </p>
-                                            </div>
-                                            <!-- /widget info -->
+                                    <!-- Card Text-->
+                                    <p class="card-text">
+                                        {{ session.session.Room.room_name }}<br>
+                                        {{ session.session.date }} | {{ session.session.start_time }} - {{ session.session.end_time }}
+                                    </p>
+                                    <!-- /card text-->
 
-                                        </div>
-                                        <!-- /widgets item -->
-
-                                    </div>
-                                    <!-- /widget -->
+                                    <!-- Card Link-->
+                                    {% for report in session.reports %}
+                                        <a href="data#{{ report.pk }}" class="card-link">Report {{ report.pk }}: {{ report.attendance }} ppl.</a>
+                                    {% endfor %}
+                                    <!-- /card link-->
 
                                 </div>
                                 <!-- /card body -->

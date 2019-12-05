@@ -5,7 +5,7 @@ from codecamp.apps.attendance.models import *
 
 class VenueForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(VenueForm, self).__init__()
+        super(VenueForm, self).__init__(*args, **kwargs)
         self.fields['venue_name'].widget.attrs = {'class': 'form-control'}
         self.fields['address'].widget.attrs = {'class': 'form-control'}
 
@@ -16,7 +16,7 @@ class VenueForm(forms.ModelForm):
 
 class EventForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(EventForm, self).__init__()
+        super(EventForm, self).__init__(*args, **kwargs)
         self.fields['event_name'].widget.attrs = {'class': 'form-control'}
         self.fields['Venue'].widget.attrs = {'class': 'form-control'}
 
@@ -60,7 +60,7 @@ class EventForm(forms.ModelForm):
 
 class RoomForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(RoomForm, self).__init__()
+        super(RoomForm, self).__init__(*args, **kwargs)
         self.fields['room_name'].widget.attrs = {'class': 'form-control'}
         self.fields['capacity'].widget.attrs = {'class': 'form-control'}
         self.fields['Venue'].widget.attrs = {'class': 'form-control'}
@@ -70,7 +70,52 @@ class RoomForm(forms.ModelForm):
         fields = ['room_name', 'capacity', 'Venue']
 
 
-class TimeslotForm(forms.ModelForm):
+class SpeakerForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SpeakerForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs = {'class': 'form-control'}
+        self.fields['last_name'].widget.attrs = {'class': 'form-control'}
+
+    email = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'type': 'email',
+                'class': 'form-control',
+            }
+        )
+    )
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'type': 'tel',
+                'class': 'form-control',
+                'pattern': '[0-9]{10-13}',
+                # 'placeholder': '000-000-0000'
+            }
+        )
+    )
+
+    def clean_phone_num(self):
+        phone_num = self.cleaned_data['phone_number']
+        phone_num = phone_num.replace('-', '')
+        phone_num = phone_num.replace('(', '')
+        phone_num = phone_num.replace(')', '')
+        phone_num = phone_num.replace(' ', '')
+        return phone_num
+
+    class Meta:
+        model = Speaker
+        fields = ['first_name', 'last_name', 'email', 'phone_number']
+
+
+class SessionForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SessionForm, self).__init__(*args, **kwargs)
+        self.fields['session_name'].widget.attrs = {'class': 'form-control'}
+        self.fields['Event'].widget.attrs = {'class': 'form-control'}
+        self.fields['Room'].widget.attrs = {'class': 'form-control'}
+        self.fields['Speaker'].widget.attrs = {'class': 'form-control'}
+
     date = forms.DateField(
         widget=forms.DateInput(
             attrs={
@@ -97,66 +142,16 @@ class TimeslotForm(forms.ModelForm):
     )
 
     class Meta:
-        model = Timeslot
-        fields = ['date', 'start_time', 'end_time']
-
-
-class SpeakerForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(SpeakerForm, self).__init__()
-        self.fields['first_name'].widget.attrs = {'class': 'form-control'}
-        self.fields['last_name'].widget.attrs = {'class': 'form-control'}
-
-    email = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'type': 'email',
-                'class': 'form-control',
-            }
-        )
-    )
-    phone_number = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'type': 'tel',
-                'class': 'form-control',
-                'pattern': '([0-9]{3}-[0-9]{3}-[0-9]{4})|([0-9]{10})',
-                # 'placeholder': '000-000-0000'
-            }
-        )
-    )
-
-    def clean_phone_num(self):
-        phone_num = self.cleaned_data['phone_number']
-        phone_num = phone_num.replace('-', '')
-        phone_num = phone_num.replace('(', '')
-        phone_num = phone_num.replace(')', '')
-        phone_num = phone_num.replace(' ', '')
-        return phone_num
-
-    class Meta:
-        model = Speaker
-        fields = ['first_name', 'last_name', 'email', 'phone_number']
-
-
-class SessionForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(SessionForm, self).__init__()
-        self.fields['session_name'].widget.attrs = {'class': 'form-control'}
-        self.fields['Event'].widget.attrs = {'class': 'form-control'}
-        self.fields['Room'].widget.attrs = {'class': 'form-control'}
-        self.fields['Timeslot'].widget.attrs = {'class': 'form-control'}
-        self.fields['Speaker'].widget.attrs = {'class': 'form-control'}
-
-    class Meta:
         model = Session
-        fields = ['session_name', 'Event', 'Room', 'Timeslot', 'Speaker']
+        fields = ['session_name', 'date', 'start_time', 'end_time', 'Event', 'Room', 'Speaker']
 
 
 class ReportForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(ReportForm, self).__init__()
+        super(ReportForm, self).__init__(*args, **kwargs)
+        self.fields['Session'].widget.attrs = {'class': 'form-control'}
+        self.fields['attendance'].widget.attrs = {'class': 'form-control'}
 
     class Meta:
         model = AttendanceReport
-        fields = ['attendance']
+        fields = ['Session', 'attendance']

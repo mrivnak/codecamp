@@ -4,16 +4,25 @@ from django.template import loader
 
 from datetime import datetime, date
 
-from .models import Venue, Event, Room, Speaker, Timeslot, Session
-from .forms import VenueForm, EventForm, RoomForm, TimeslotForm, SpeakerForm, SessionForm, ReportForm
+from .models import *
+from .forms import *
 
 
 def index(request):
     session_list = Session.objects.order_by()
+    full_session_list = []
     template = loader.get_template('index.html')
 
+    for session in session_list:
+        sess = Session.objects.get(pk=session.pk)
+        reports = sess.attendancereport_set.all()
+        full_session_list.append({
+            'session': session,
+            'reports': reports,
+        })
+
     context = {
-        'session_list': session_list
+        'session_list': full_session_list
     }
     return HttpResponse(template.render(context, request))
 
@@ -40,6 +49,27 @@ def attendance(request, id):
         return HttpResponse(template.render(context, request))
 
 
+def attendance_basic(request):
+
+    if request.method == 'POST':
+
+        form = ReportForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+
+    else:
+
+        form = ReportForm()
+
+        template = loader.get_template('attendance.html')
+        context = {
+            'form': form,
+        }
+        return HttpResponse(template.render(context, request))
+
+
 def admin(request):
     template = loader.get_template('admin.html')
 
@@ -47,22 +77,15 @@ def admin(request):
     event_list = Event.objects.order_by()
     room_list = Room.objects.order_by()
     speaker_list = Speaker.objects.order_by()
-    time_list = Timeslot.objects.order_by()
     session_list = Session.objects.order_by()
 
     duration_list = []
-
-    for time in time_list:
-        duration_list.append({'time': time,
-                              'duration': int((datetime.combine(date.today(), time.end_time)
-                                               - datetime.combine(date.today(), time.start_time)).seconds / 60)})
 
     context = {
         'venue_list': venue_list,
         'event_list': event_list,
         'room_list': room_list,
         'speaker_list': speaker_list,
-        'time_list': time_list,
         'duration_list': duration_list,
         'session_list': session_list
     }
@@ -77,8 +100,6 @@ def form_add(request, type):
             form = RoomForm(request.POST)
         elif type == 'speaker':
             form = SpeakerForm(request.POST)
-        elif type == 'timeslot':
-            form = TimeslotForm(request.POST)
         elif type == 'session':
             form = SessionForm(request.POST)
         elif type == 'venue':
@@ -99,8 +120,6 @@ def form_add(request, type):
             form = RoomForm()
         elif type == 'speaker':
             form = SpeakerForm()
-        elif type == 'timeslot':
-            form = TimeslotForm()
         elif type == 'session':
             form = SessionForm()
         elif type == 'venue':
@@ -129,10 +148,20 @@ def delete(request, type, id):
 
 
 def data(request):
-    session_list = Session.objects.order_by()
+    report_list = AttendanceReport.objects.order_by()
     template = loader.get_template('data.html')
 
     context = {
-        'session_list': session_list
+        'report_list': report_list
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def data_user(request):
+    report_list = AttendanceReport.objects.order_by()
+    template = loader.get_template('data_user.html')
+
+    context = {
+        'report_list': report_list
     }
     return HttpResponse(template.render(context, request))
