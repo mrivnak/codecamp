@@ -1,10 +1,23 @@
 # todo: configure gitignore
-.idea/
-
-venv/
-
+/venv/
+/venv/pyvenv.cfg
+venv/pyvenv.cfg
+.idea
+.DS_Store
+*.pyc
+codecamp/db.sqlite3
+codecamp/.DS_Store
+codecamp/apps/.DS_Store
 codecamp/__pycache__/
+codecamp/settings/__pycache__/
+
+codecamp/apps/attendance/migrations/
 
 codecamp/db.sqlite3
 
+codecamp/__pycache__/
+
+codecamp/apps/__pycache__/
+
 codecamp/settings/__pycache__/
+/codecamp/apps/attendance/migrations/

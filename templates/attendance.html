@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Drift - A fully responsive, HTML5 based admin template">
+  <meta name="keywords" content="Responsive, HTML5, admin theme, business, professional, jQuery, web design, CSS3, sass">
+  <!-- /meta tags -->
+  <title>{{ session.session_name }}</title>
+
+  {% load static %}
+  <!-- Site favicon -->
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <!-- /site favicon -->
+
+  <!-- Font Icon Styles -->
+  <link rel="stylesheet" href="{% static 'node_modules/flag-icon-css/css/flag-icon.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/gaxon-icon/styles.css' %}">
+  <script src="https://kit.fontawesome.com/0287685415.js" crossorigin="anonymous"></script>
+  <!-- /font icon Styles -->
+
+  <!-- Perfect Scrollbar stylesheet -->
+  <link rel="stylesheet" href="{% static 'node_modules/perfect-scrollbar/css/perfect-scrollbar.css' %}">
+  <!-- /perfect scrollbar stylesheet -->
+
+  <!-- Load Styles -->
+    <link rel="stylesheet" href="{% static 'node_modules/owl.carousel/dist/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/chartist/dist/chartist.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/light-style-1.min.css' %}">
+  <!-- /load styles -->
+
+</head>
+<body class="dt-sidebar--fixed dt-header--fixed">
+
+<!-- Loader -->
+<div class="dt-loader-container">
+  <div class="dt-loader">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
+    </svg>
+  </div>
+</div>
+<!-- /loader -->
+
+<!-- Root -->
+<div class="dt-root">
+    <div class="dt-root__inner">
+        <!-- Header -->
+        <header class="dt-header">
+
+            <!-- Header container -->
+            <div class="dt-header__container">
+
+                <!-- Brand -->
+                <div class="dt-brand">
+
+                    <!-- Brand tool -->
+                    <div class="dt-brand__tool" data-toggle="main-sidebar">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                    <!-- /brand tool -->
+
+                </div>
+                <!-- /brand -->
+
+                <!-- Header toolbar-->
+                <div class="dt-header__toolbar">
+
+                </div>
+                <!-- /header toolbar -->
+
+            </div>
+            <!-- /header container -->
+
+        </header>
+        <!-- /header -->
+
+        <!-- Site Main -->
+        <main class="dt-main">
+            <!-- Sidebar -->
+            <aside id="main-sidebar" class="dt-sidebar">
+                <div class="dt-sidebar__container">
+
+                    <!-- Sidebar Navigation -->
+                    <ul class="dt-side-nav">
+
+                        <!-- Menu Header -->
+                        <li class="dt-side-nav__item dt-side-nav__header">
+                            <span class="dt-side-nav__text">main</span>
+                        </li>
+                        <!-- /menu header -->
+
+                        <!-- Menu Item -->
+                        <li class="dt-side-nav__item open">
+                            <a href="/" class="dt-side-nav__link" title="Dashboard">
+                                <i class="icon icon-charts icon-fw icon-lg"></i>
+                                <span class="dt-side-nav__text">Attendance</span>
+                            </a>
+
+                        </li>
+                        <!-- /menu item -->
+
+                    </ul>
+                    <!-- /sidebar navigation -->
+
+                </div>
+            </aside>
+            <!-- /sidebar -->
+
+            <!-- Site Content Wrapper -->
+            <div class="dt-content-wrapper">
+
+                <!-- Site Content -->
+                <div class="dt-content">
+
+                    <!-- Page Header -->
+                    <div class="dt-page__header">
+                        <h1 class="dt-page__title">Codecamp Attendance</h1>
+                    </div>
+                    <!-- /page header -->
+
+                    <!-- Grid -->
+                    <div class="row">
+
+                        <!-- Grid Item -->
+                        <div class="col-xl-6">
+                            <!-- Card -->
+                            <div class="dt-card dt-card__full-height">
+
+                                <!-- Card Header -->
+                                <div class="dt-card__header">
+
+                                    <!-- Card Heading -->
+                                    <div class="dt-card__heading">
+                                        <h3 class="dt-card__title">{{ session.session_name }}</h3>
+                                    </div>
+                                    <!-- /card heading -->
+
+                                </div>
+                                <!-- /card header -->
+
+                                <!-- Card Body -->
+                                <div class="dt-card__body">
+
+                                    <!-- Form -->
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+
+                                        <!-- Form Group -->
+                                        <div class="form-group">
+                                            {{ form.as_p }}
+                                        </div>
+                                        <!-- /form group -->
+
+                                        <!-- Form Group -->
+                                        <div class="form-group form-row">
+                                            <div class="col-xl-6">
+                                                <button type="submit" class="btn btn-primary text-uppercase">Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- /form group -->
+
+                                    </form>
+                                    <!-- /form -->
+
+                                </div>
+                                <!-- /card body -->
+
+                            </div>
+                            <!-- /card -->
+
+                        </div>
+                        <!-- /grid item -->
+
+                    </div>
+                    <!-- /grid -->
+
+                </div>
+                <!-- /site content -->
+
+            </div>
+            <!-- /site content wrapper -->
+
+        </main>
+    </div>
+</div>
+<!-- /root -->
+
+<!-- Optional JavaScript -->
+<script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'node_modules/moment/moment.js' %}"></script>
+<script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Perfect Scrollbar jQuery -->
+<script src="{% static 'node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js' %}"></script>
+<!-- /perfect scrollbar jQuery -->
+
+<!-- masonry script -->
+<script src="{% static 'node_modules/masonry-layout/dist/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'node_modules/sweetalert2/dist/sweetalert2.js' %}"></script>
+<script src="{% static 'js/functions.js' %}"></script>
+<script src="{% static 'js/customizer.js' %}"></script>
+<!-- Custom JavaScript -->
+<script src="{% static 'node_modules/chartist/dist/chartist.min.js' %}"></script>
+<script src="{% static 'node_modules/owl.carousel/dist/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/custom/charts/dashboard-listing.js' %}"></script>
+
+</body>
+</html>

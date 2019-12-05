@@ -56,7 +56,9 @@ ROOT_URLCONF = 'codecamp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(os.path.dirname(__file__), os.path.pardir, os.path.pardir, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,3 +122,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(os.path.dirname(__file__), os.path.pardir, os.path.pardir, 'static')
+]
+
+# Formatting
+TIME_INPUT_FORMATS = ('%H:%M',)
+DATE_INPUT_FORMATS = ('%M/%D/%Y',)
