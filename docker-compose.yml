@@ -1,0 +1,12 @@
+version: '3.2'
+
+services:
+  web:
+    container_name: codecamp_attendance
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    command: bash -c "python codecamp/manage.py makemigrations && python codecamp/manage.py migrate --run-syncdb && python codecamp/manage.py runserver 0.0.0.0:8000"
+    restart: on-failure
