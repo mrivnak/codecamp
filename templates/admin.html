@@ -461,7 +461,6 @@
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
                                                             {{ session.date }} | {{ session.start_time }} - {{ session.end_time }}<br>
                                                             {{ session.Room.room_name }}<br>
-                                                            Attendance: {% if session.attendance < 0 %}N/A{% else %}{{ session.attendance }} persons{% endif %}
                                                             <a class="text-dark" href="javascript:void(0)">{{ session.speaker.name }}</a>
                                                         </p>
                                                     </div>
