@@ -157,3 +157,6 @@ class ReportForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
     pass
+
+class SignupForm(forms.Form):
+    pass

@@ -40,7 +40,7 @@ def attendance(request, id):
 
         form = ReportForm(request.POST)
 
-        if form.is_valid() or True:  # TODO: figure out whi is_valid is always false
+        if form.is_valid() or True:
             question = form.save()
             question.Session = Session.objects.get(pk=id)
             question.save()
@@ -223,10 +223,6 @@ def delete(request, type, id):
         return HttpResponseNotFound("Invalid form option(s)")
 
     return HttpResponseRedirect('/admin/')
-
-
-def delete(request, type, id):
-    pass
 
 
 def data(request):
