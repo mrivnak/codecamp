@@ -133,6 +133,26 @@
                     <!-- Grid -->
                     <div class="row">
 
+                        <!-- Grid Item -->
+                        <div class="col-xl-4 col-6">
+
+                            <!-- Card -->
+                            <div class="dt-card dt-card__full-height">
+
+                                <!-- Card Body -->
+                                <div class="dt-card__body text-center">
+                                    <p class="text-dark f-16">A basic message</p>
+                                    <a href="javascript:void(0)" class="btn btn-outline-primary basic-alert">Click
+                                        me</a>
+                                </div>
+                                <!-- /card body -->
+
+                            </div>
+                            <!-- /card -->
+
+                        </div>
+                        <!-- /grid item -->
+
                         <!-- Venues -->
                         <!-- Grid Item -->
                         <div class="col-xl-6 col-md-6 order-xl-3">
@@ -189,7 +209,7 @@
                                                                 </a>
                                                             </li>
                                                             <li class="dt-list__item">
-                                                                <a class="text-light-gray" href="forms/venue/delete/{{ venue.pk }}">
+                                                                <a class="btn btn-outline-primary parameter-alert" href="javascript:void(0)">
                                                                     <i class="icon icon-trash-filled">
                                                                     </i>
                                                                 </a>
@@ -573,6 +593,8 @@
 <script src="{% static 'node_modules/sweetalert2/dist/sweetalert2.js' %}"></script>
 <script src="{% static 'js/functions.js' %}"></script>
 <script src="{% static 'js/customizer.js' %}"></script>
+<script src="{% static 'node_modules/sweetalert2/dist/sweetalert2.js' %}"></script>
+<script src="{% static 'js/custom/sweet-alert.js' %}"></script>
 <!-- Custom JavaScript -->
 <script src="{% static 'node_modules/chartist/dist/chartist.min.js' %}"></script>
 <script src="{% static 'node_modules/owl.carousel/dist/owl.carousel.min.js' %}"></script>
