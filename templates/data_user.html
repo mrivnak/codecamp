@@ -8,7 +8,7 @@
   <meta name="description" content="Drift - A fully responsive, HTML5 based admin template">
   <meta name="keywords" content="Responsive, HTML5, admin theme, business, professional, jQuery, web design, CSS3, sass">
   <!-- /meta tags -->
-  <title>Codecamp Attendance</title>
+  <title>Attendance Data</title>
 
   {% load static %}
   <!-- Site favicon -->
@@ -68,7 +68,7 @@
                 <!-- Header toolbar-->
                 <div class="dt-header__toolbar">
                     <div class="dt-nav-wrapper">
-                        <a href="/admin/" class="dt-nav__link">Admin</a>
+                        <a href="/admin" class="dt-nav__link">Admin</a>
                     </div>
                 </div>
                 <!-- /header toolbar -->
@@ -95,23 +95,21 @@
                         <!-- /menu header -->
 
                         <!-- Menu Item -->
-                        <li class="dt-side-nav__item open">
-                            <a href="javascript:void(0)" class="dt-side-nav__link" title="Attendance">
+                        <li class="dt-side-nav__item">
+                            <a href="/" class="dt-side-nav__link" title="Attendance">
                                 <i class="icon icon-charts icon-fw icon-lg"></i>
                                 <span class="dt-side-nav__text">Attendance</span>
                             </a>
-
                         </li>
                         <!-- /menu item -->
                         <!-- Menu Item -->
-                        <li class="dt-side-nav__item">
-                            <a href="/data/" class="dt-side-nav__link" title="Data">
+                        <li class="dt-side-nav__item open">
+                            <a href="n/data/" class="dt-side-nav__link" title="Data">
                                 <i class="icon icon-tables icon-fw icon-lg"></i>
                                 <span class="dt-side-nav__text">Data</span>
                             </a>
                         </li>
                         <!-- /menu item -->
-
 
                     </ul>
                     <!-- /sidebar navigation -->
@@ -128,57 +126,55 @@
 
                     <!-- Page Header -->
                     <div class="dt-page__header">
-                        <h1 class="dt-page__title">Codecamp Attendance</h1>
-                        <a class="btn btn-primary" href="attendance">Create Attendance Report</a>
+                        <h1 class="dt-page__title">Attendance Data</h1>
                     </div>
                     <!-- /page header -->
 
-                    <!-- Grid -->
-                    <div class="row">
-                        {% if session_list %}
-                        {% for session in session_list %}
-                        <!-- Grid Item -->
-                        <div class="col-xl-6 col-md-6 order-xl-3">
-                            <!-- Card -->
-                            <div class="card">
+                    <!-- Card -->
+                    <div class="dt-card overflow-hidden">
 
-                                <!-- Card Body -->
-                                <div class="card-body">
+                        <!-- Card Body -->
+                        <div class="dt-card__body p-0">
 
-                                    <!-- Card Title-->
-                                    <h2 class="card-title">{{ session.session.session_name }}</h2>
-                                    <!-- /card title-->
-
-                                    <!-- Card Subitle-->
-                                    <h2 class="card-subtitle">{{ session.session.Speaker.first_name }} {{ session.session.Speaker.last_name }}</h2>
-                                    <!-- /card subtitle-->
-
-                                    <!-- Card Text-->
-                                    <p class="card-text">
-                                        {{ session.session.Room.room_name }}<br>
-                                        {{ session.session.date }} | {{ session.session.start_time }} - {{ session.session.end_time }}
-                                    </p>
-                                    <!-- /card text-->
-
-                                    <!-- Card Link-->
-                                    {% for report in session.reports %}
-                                        <a href="data#{{ report.report.pk }}" class="card-link">Report {{ report.index }}: {{ report.report.attendance }} ppl.</a><br>
+                            <!-- Tables -->
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th class="text-uppercase" scope="col">Session Name</th>
+                                        <th class="text-uppercase" scope="col">Date</th>
+                                        <th class="text-uppercase" scope="col">Time</th>
+                                        <th class="text-uppercase" scope="col">Event</th>
+                                        <th class="text-uppercase" scope="col">Room</th>
+                                        <th class="text-uppercase" scope="col">Speaker</th>
+                                        <th class="text-uppercase" scope="cok">Report Time</th>
+                                        <th class="text-uppercase" scope="col">Attendance</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for report in report_list %}
+                                    <tr>
+                                        <td><a id="{{ report.pk }}"></a>{{ report.Session.session_name }}</td>
+                                        <td>{{ report.Session.date }}</td>
+                                        <td>{{ report.Session.start_time }} - {{ report.Session.end_time }}</td>
+                                        <td>{{ report.Session.Event.event_name }}</td>
+                                        <td>{{ report.Session.Room.room_name }}</td>
+                                        <td>{{ report.Session.Speaker.first_name }} {{ report.Session.Speaker.last_name }}</td>
+                                        <td>{{ report.report_time }}</td>
+                                        <td>{% if report.attendance < 0 %}N/A{% else %}{{ report.attendance }}{% endif %}</td>
+                                    </tr>
                                     {% endfor %}
-                                    <!-- /card link-->
-
-                                </div>
-                                <!-- /card body -->
-
+                                    </tbody>
+                                </table>
                             </div>
-                            <!-- /card -->
+                            <!-- /tables -->
 
                         </div>
-                        <!-- /grid item -->
-                        {% endfor %}
-                        {% endif %}
+                        <!-- /card body -->
 
                     </div>
-                    <!-- /grid -->
+                    <!-- /card -->
+
 
                 </div>
                 <!-- /site content -->

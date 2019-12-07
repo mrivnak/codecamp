@@ -1,8 +1,11 @@
 # Codecamp (Attendance Tracker)
 
-### Usage (Development)
-Todo: usage docs  
+### Usage (Deployment)
 Steps:  
-- Set up interpreter settings
-- Set up django project settings
-- set up pycharm configuration for "manage.py"
+This project is configured to be docker deployable. All that is needed is the repository and docker.
+
+- Follow steps for docker-compose installation here: https://docs.docker.com/compose/install/
+
+- Clone the repository with "git clone <repo>"
+
+- In the root directory of the repository, run "docker-compose up -d" to run the server inside a container. 

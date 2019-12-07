@@ -67,7 +67,9 @@
 
                 <!-- Header toolbar-->
                 <div class="dt-header__toolbar">
-
+                    <div class="dt-nav-wrapper">
+                        <a href="/" class="dt-nav__link">User</a>
+                    </div>
                 </div>
                 <!-- /header toolbar -->
 
@@ -102,7 +104,7 @@
                         <!-- /menu item -->
                         <!-- Menu Item -->
                         <li class="dt-side-nav__item open">
-                            <a href="/admin/data/" class="dt-side-nav__link" title="Dashboard">
+                            <a href="/admin/data/" class="dt-side-nav__link" title="Data">
                                 <i class="icon icon-tables icon-fw icon-lg"></i>
                                 <span class="dt-side-nav__text">Data</span>
                             </a>
@@ -146,20 +148,23 @@
                                         <th class="text-uppercase" scope="col">Event</th>
                                         <th class="text-uppercase" scope="col">Room</th>
                                         <th class="text-uppercase" scope="col">Speaker</th>
+                                        <th class="text-uppercase" scope="cok">Report Time</th>
                                         <th class="text-uppercase" scope="col">Attendance</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for session in session_list %}
+                                    {% for report in report_list %}
                                     <tr>
-                                        <th scope="row">{{session.pk}}</th>
-                                        <td>{{ session.session_name }}</td>
-                                        <td>{{ session.Timeslot.date }}</td>
-                                        <td>{{ session.Timeslot.start_time }} - {{ session.Timeslot.end_time }}</td>
-                                        <td>{{ session.Event.event_name }}</td>
-                                        <td>{{ session.Room.room_name }}</td>
-                                        <td>{{ session.Speaker.first_name }} {{ session.Speaker.last_name }}</td>
-                                        <td>{% if session.attendance < 0 %}N/A{% else %}{{ session.attendance }}{% endif %}</td>
+
+                                        <th scope="row"><a id="{{ report.pk }}"></a>{{report.pk}}</th>
+                                        <td>{{ report.Session.session_name }}</td>
+                                        <td>{{ report.Session.date }}</td>
+                                        <td>{{ report.Session.start_time }} - {{ report.Session.end_time }}</td>
+                                        <td>{{ report.Session.Event.event_name }}</td>
+                                        <td>{{ report.Session.Room.room_name }}</td>
+                                        <td>{{ report.Session.Speaker.first_name }} {{ report.Session.Speaker.last_name }}</td>
+                                        <td>{{ report.report_time }}</td>
+                                        <td>{% if report.attendance < 0 %}N/A{% else %}{{ report.attendance }}{% endif %}</td>
                                     </tr>
                                     {% endfor %}
                                     </tbody>

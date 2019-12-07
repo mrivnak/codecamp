@@ -67,7 +67,9 @@
 
                 <!-- Header toolbar-->
                 <div class="dt-header__toolbar">
-
+                    <div class="dt-nav-wrapper">
+                        <a href="/" class="dt-nav__link">User</a>
+                    </div>
                 </div>
                 <!-- /header toolbar -->
 
@@ -128,6 +130,34 @@
                     </div>
                     <!-- /page header -->
 
+                    <script>
+                        function confirmDelete(type, pk) {
+                            const swalWithBootstrapButtons = swal.mixin({
+                                confirmButtonClass: 'btn btn-success mb-2',
+                                cancelButtonClass: 'btn btn-danger mr-2 mb-2',
+                                buttonsStyling: false,
+                            });
+
+                            swalWithBootstrapButtons({
+                                title: 'Are you sure?',
+                                text: "You won't be able to revert this!",
+                                type: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes, delete it!',
+                                cancelButtonText: 'No, cancel!',
+                                reverseButtons: true
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location = '/admin/forms/' + type + '/delete/' + pk;
+                                } else if (
+                                    // Read more about handling dismissals
+                                result.dismiss === swal.DismissReason.cancel
+                                ) {
+                                }
+                            });
+                        }
+                    </script>
+
                     <!-- Grid -->
                     <div class="row">
 
@@ -178,10 +208,22 @@
                                                     <!-- /widget info -->
 
                                                     <!-- Widget Extra -->
-                                                    <div class="dt-extra animate-slide align-self-center">
-                                                        <div class="slide-content">
-                                                            <a href="javascript:void(0)"><i class="icon icon-editors icon-fw icon-xl"></i></a>
-                                                        </div>
+                                                    <div class="dt-extra align-self-center">
+                                                        <ul class="dt-list dt-list-cm-0">
+                                                            <li class="dt-list__item">
+                                                                <a class="text-light-gray" href="forms/venue/edit/{{ venue.pk }}">
+                                                                    <i class="icon icon-editors">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="dt-list__item">
+                                                                <a class="text-light-gray" href="javascript:confirmDelete('venue', {{ venue.pk }})"
+                                                                    type="venue" pk="{{ venue.pk }}">
+                                                                    <i class="icon icon-trash-filled">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                     <!-- /widget extra -->
 
@@ -249,10 +291,21 @@
                                                     <!-- /widget info -->
 
                                                     <!-- Widget Extra -->
-                                                    <div class="dt-extra animate-slide align-self-center">
-                                                        <div class="slide-content">
-                                                            <a href="javascript:void(0)"><i class="icon icon-editors icon-fw icon-xl"></i></a>
-                                                        </div>
+                                                    <div class="dt-extra align-self-center">
+                                                        <ul class="dt-list dt-list-cm-0">
+                                                            <li class="dt-list__item">
+                                                                <a class="text-light-gray" href="forms/event/edit/{{ event.pk }}">
+                                                                    <i class="icon icon-editors">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="dt-list__item">
+                                                                <a class="text-light-gray" href="javascript:confirmDelete('event', {{ event.pk }})">
+                                                                    <i class="icon icon-trash-filled">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                     <!-- /widget extra -->
 
@@ -320,10 +373,21 @@
                                                     <!-- /widget info -->
 
                                                     <!-- Widget Extra -->
-                                                    <div class="dt-extra animate-slide align-self-center">
-                                                        <div class="slide-content">
-                                                            <a href="javascript:void(0)"><i class="icon icon-editors icon-fw icon-xl"></i></a>
-                                                        </div>
+                                                    <div class="dt-extra align-self-center">
+                                                        <ul class="dt-list dt-list-cm-0">
+                                                            <li class="dt-list__item">
+                                                                <a class="text-light-gray" href="forms/room/edit/{{ room.pk }}">
+                                                                    <i class="icon icon-editors">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="dt-list__item">
+                                                                <a class="text-light-gray" href="javascript:confirmDelete('room', {{ room.pk }})">
+                                                                    <i class="icon icon-trash-filled">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                     <!-- /widget extra -->
 
@@ -392,81 +456,21 @@
                                                     <!-- /widget info -->
 
                                                     <!-- Widget Extra -->
-                                                    <div class="dt-extra animate-slide align-self-center">
-                                                        <div class="slide-content">
-                                                            <a href="javascript:void(0)"><i class="icon icon-editors icon-fw icon-xl"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /widget extra -->
-
-                                                </div>
-                                                <!-- /widgets item -->
-                                            {% endfor %}
-                                        {% endif %}
-
-                                    </div>
-                                    <!-- /widget -->
-
-                                </div>
-                                <!-- /card body -->
-
-                            </div>
-                            <!-- /card -->
-
-                        </div>
-                        <!-- /grid item -->
-
-                        <!-- Timeslots -->
-                        <!-- Grid Item -->
-                        <div class="col-xl-6 col-md-6 order-xl-3">
-
-                            <!-- Card -->
-                            <div class="dt-card dt-card__full-height pb-4">
-
-                                <!-- Card Header -->
-                                <div class="dt-card__header mb-3">
-
-                                    <!-- Card Heading -->
-                                    <div class="dt-card__heading">
-                                        <h3 class="dt-card__title">Timeslots</h3>
-                                    </div>
-                                    <!-- /card heading -->
-
-                                    <!-- Card Tools -->
-                                    <div class="dt-card__tools">
-                                        <a href="forms/timeslot/add"><button type="button" class="btn btn-outline-primary btn-sm mr-2 mb-2">Add timeslot
-                                        </button></a>
-                                    </div>
-                                    <!-- /card tools -->
-
-                                </div>
-                                <!-- /card header -->
-
-                                <!-- Card Body -->
-                                <div class="dt-card__body p-0 max-h-400 ps-custom-scrollbar">
-
-                                    <!-- Widget -->
-                                    <div class="dt-widget dt-widget-separator dt-widget-hover">
-
-                                        {% if duration_list %}
-                                            {% for time in duration_list %}
-                                                <!-- Widget Item -->
-                                                <div class="dt-widget__item">
-
-                                                    <!-- Widget Info -->
-                                                    <div class="dt-widget__info text-truncate">
-                                                        <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ time.time.date }} | {{ time.time.start_time }} - {{ time.time.end_time }}</a>
-                                                        <p class="dt-widget__subtitle text-truncate text-light-gray">
-                                                            {{ time.duration }} minutes
-                                                        </p>
-                                                    </div>
-                                                    <!-- /widget info -->
-
-                                                    <!-- Widget Extra -->
-                                                    <div class="dt-extra animate-slide align-self-center">
-                                                        <div class="slide-content">
-                                                            <a href="javascript:void(0)"><i class="icon icon-editors icon-fw icon-xl"></i></a>
-                                                        </div>
+                                                    <div class="dt-extra align-self-center">
+                                                        <ul class="dt-list dt-list-cm-0">
+                                                            <li class="dt-list__item">
+                                                                <a class="text-light-gray" href="forms/speaker/edit/{{ speaker.pk }}">
+                                                                    <i class="icon icon-editors">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="dt-list__item">
+                                                                <a class="text-light-gray" href="javascript:confirmDelete('speaker', {{ speaker.pk }})">
+                                                                    <i class="icon icon-trash-filled">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                     <!-- /widget extra -->
 
@@ -528,19 +532,29 @@
                                                     <div class="dt-widget__info text-truncate">
                                                         <a href="javascript:void(0)" class="dt-widget__title text-truncate">{{ session.session_name }}</a>
                                                         <p class="dt-widget__subtitle text-truncate text-light-gray">
-                                                            {{ session.Timeslot.date }} | {{ session.Timeslot.start_time }} - {{ session.Timeslot.end_time }}<br>
+                                                            {{ session.date }} | {{ session.start_time }} - {{ session.end_time }}<br>
                                                             {{ session.Room.room_name }}<br>
-                                                            Attendance: {% if session.attendance < 0 %}N/A{% else %}{{ session.attendance }} persons{% endif %}
                                                             <a class="text-dark" href="javascript:void(0)">{{ session.speaker.name }}</a>
                                                         </p>
                                                     </div>
                                                     <!-- /widget info -->
 
                                                     <!-- Widget Extra -->
-                                                    <div class="dt-extra animate-slide align-self-center">
-                                                        <div class="slide-content">
-                                                            <a href="javascript:void(0)"><i class="icon icon-editors icon-fw icon-xl"></i></a>
-                                                        </div>
+                                                    <div class="dt-extra align-self-center">
+                                                        <ul class="dt-list dt-list-cm-0">
+                                                            <li class="dt-list__item">
+                                                                <a class="text-light-gray" href="forms/session/edit/{{ session.pk }}">
+                                                                    <i class="icon icon-editors">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="dt-list__item">
+                                                                <a class="text-light-gray" href="javascript:confirmDelete('session', {{ session.pk }})">
+                                                                    <i class="icon icon-trash-filled">
+                                                                    </i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                     <!-- /widget extra -->
 
@@ -588,6 +602,7 @@
 <script src="{% static 'node_modules/sweetalert2/dist/sweetalert2.js' %}"></script>
 <script src="{% static 'js/functions.js' %}"></script>
 <script src="{% static 'js/customizer.js' %}"></script>
+<script src="{% static 'js/custom/sweet-alert.js' %}"></script>
 <!-- Custom JavaScript -->
 <script src="{% static 'node_modules/chartist/dist/chartist.min.js' %}"></script>
 <script src="{% static 'node_modules/owl.carousel/dist/owl.carousel.min.js' %}"></script>
