@@ -2,6 +2,10 @@
 
 ### Usage (Deployment)
 Steps:  
-- Set up python virtual environment (if desired)
-- pip install docker-compose
-- Run "docker-compose up -d" in project root dir to run container in detached mode.
+This project is configured to be docker deployable. All that is needed is the repository and docker.
+
+- Follow steps for docker-compose installation here: https://docs.docker.com/compose/install/
+
+- Clone the repository with "git clone <repo>"
+
+- In the root directory of the repository, run "docker-compose up -d" to run the server inside a container. 
