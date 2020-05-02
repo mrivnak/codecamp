@@ -21,3 +21,5 @@ codecamp/apps/__pycache__/
 
 codecamp/settings/__pycache__/
 /codecamp/apps/attendance/migrations/
+
+static/node_modules/
